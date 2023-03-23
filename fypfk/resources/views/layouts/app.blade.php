@@ -6,25 +6,26 @@
 </head>
 
 <body>
+    <!--
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <!-- <a class="navbar-brand" href="{{ url('/') }}">
+                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Petakom') }}
                 </a> -->
                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
-
+                <!--
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                     Left Side Of Navbar 
                     <ul class="navbar-nav me-auto">
                         
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    Right Side Of Navbar 
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                         Authentication Links -->
                         <!-- @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
@@ -55,13 +56,12 @@
                             </div>
                         </li>
                         @endguest -->
-                    </ul>
+                    <!--</ul>
                 </div>
             </div>
-        </nav>
-
+        </nav> -->
         <main class="py-4">
-            <div class="container-fluid " align="center" style="padding:50px">
+            <div class="container-fluid " align="center" style="padding:5px">
                 <div class="row justify-content-center">
                     <div class="col-sm-6 ">
                     <img src=" {{ asset('frontend') }}/images/logo.png" width="240">
