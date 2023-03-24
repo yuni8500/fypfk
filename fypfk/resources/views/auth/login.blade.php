@@ -53,7 +53,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-12 offset-md-3">
-                                <button type="submit" class="btn btn-primary" style="background-color: #FA8226; border-radius: 10px; border: none; width: 100px; color: black; font-size: 15px">
+                                <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                     <b>{{ __('LOG IN') }}</b>
                                 </button>
 
@@ -62,6 +62,10 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
+                                <a class="btn btn-link" href="{{ route('register') }}" style="margin-top: 30px; color: black;">
+                                        <b>{{ __('Do not have account? Register Now') }}</b>
+                                </a>
                             </div>
                         </div>
                     </form>

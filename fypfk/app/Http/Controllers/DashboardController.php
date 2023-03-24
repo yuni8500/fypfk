@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +13,17 @@ class DashboardController extends Controller
         $category = Auth::user()->category;
 
         if ($category == 'Student') {
-            return view('dashboard.student');
+            $id = Auth::user()->id;
+
+            //if student info exists in the table 
+            if (DB::table('infoprofile')
+                ->where('userID', $id)
+                ->exists()
+            ) {
+                return view('dashboard.student');
+            } else {
+                return view('student.profile');
+            }
         }
         if ($category == 'Staff') {
             return view('dashboard.staff');

@@ -7,10 +7,10 @@
         <!-- Main Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
             <div class="main-navbar">
-                <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-                    <a class="navbar-brand w-100 mr-0" href="{{ route('dashboard') }}" style="line-height: 25px;">
+                <nav class="navbar align-items-stretch navbar-light flex-md-nowrap border-bottom p-0" style="background-color: #145956">
+                    <a class="navbar-brand w-100 mr-0" href="{{ route('dashboard') }}" style="line-height: 40px; color: white">
                         <div class="d-table m-auto">
-                            <img id="main-logo" class="d-inline-block align-center mr-1" style="max-width: 30px;" src="{{ asset('frontend') }}/images/logo.png" alt="petakom logo">
+                            <img id="main-logo" class="d-inline-block align-center mr-1" style="max-width: 40px;" src="{{ asset('frontend') }}/images/logodashboard.png" alt="logo FYPFK">
                             <span class="d-none d-md-inline ml-1"> {{ config('app.name', 'Final Year Project Management System for Faculty of Computing') }}</span>
                         </div>
                     </a>
@@ -34,7 +34,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                             <i class="material-icons">info</i>
-                            <span>Dashboard</span>
+                            <span>Home</span>
                         </a>
                     </li>
 
@@ -178,7 +178,7 @@
         </aside>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-            <div class="main-navbar sticky-top bg-white">
+            <div class="main-navbar sticky-top" style="background-color: #145956">
                 <!-- Main Navbar -->
                 <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
 
@@ -189,11 +189,11 @@
                         </div>
 
                     </div>
-                    <ul class="navbar-nav border-left flex-row ml-auto ">
+                    <ul class="navbar-nav border-left flex-row ml-auto">
                         <li class="nav-item border-right dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <img class="user-avatar rounded-circle mr-2" src="{{ asset('frontend') }}/images/avatar.jpg" alt="Avatar" width="30px" height="30px" style="vertical-align:baseline">
-                                <span class="d-none d-md-inline-block"><strong>{{ Auth::user()->name }}</strong><br> {{Auth::user()->category}}</span>
+                                <span class="d-none d-md-inline-block" style="color: white"><strong>{{ Auth::user()->name }}</strong><br> {{Auth::user()->category}}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
                                 <div class="dropdown-divider"></div>
@@ -238,14 +238,13 @@
             </div>
             @endif
 
-            <div class="main-content-container container-fluid px-4">
-                <br>
+            <div class="main-content-container container-fluid">
                 @yield('content')
             </div>
 
             <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
                 <span class="copyright ml-auto my-auto mr-2">Copyright © {{ now()->year }}
-                    <a href="#" rel="nofollow">Faculty Of Computing</a>
+                    <a href="#" rel="nofollow" style="color: #FA8226">Faculty Of Computing</a>
                 </span>
             </footer>
 
