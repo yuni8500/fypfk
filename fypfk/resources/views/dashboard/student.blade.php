@@ -10,7 +10,10 @@
 </div>-->
 
 <div class="row">
-    <img src="{{ asset('frontend') }}/images/banner.png" width="1080px" style="display: block;">
+    <img src="{{ asset('frontend') }}/images/banner.png" width="1137px" height="250px" style="display: block; padding-bottom: 20px">
+
+    <h3 style="color: black"><b>ANNOUNCEMENT BOARD</b></h3>
+    <hr>
 </div>
 
 @endsection

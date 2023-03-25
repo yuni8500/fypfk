@@ -29,57 +29,57 @@
                         <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">
                     </div>
                 </form> -->
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" style="background-color: #86B5B3; color: black">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">info</i>
-                            <span>Home</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #FA8226; color: white">
+                            <b><i class="material-icons" style="color: white">home</i>
+                            <span>Home</span></b>
                         </a>
                     </li>
 
                     <!-- DASHBOARD START -->
                     @if( auth()->user()->category== "Student")
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Quota</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">groups</i>
+                            <span>Supervisor Quota</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Application</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">assignment</i>
+                            <span>Supervisor Application</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Appointment Meeting</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">event</i>
+                            <span>Appointment Meeting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Logbook</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">import_contacts</i>
+                            <span>Logbook</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>My Task</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">toc</i>
+                            <span>My Task</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Reporting</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">pie_chart</i>
+                            <span>Reporting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Evaluation</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">streetview</i>
+                            <span>Evaluation</span></b>
                         </a>
                     </li>
                     @endif
@@ -190,6 +190,14 @@
 
                     </div>
                     <ul class="navbar-nav border-left flex-row ml-auto">
+                        <li class="nav-item border-right dropdown">
+                            <a class="nav-link text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons" style="color: white; font-size: 30px">notifications</i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-small">
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
                         <li class="nav-item border-right dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <img class="user-avatar rounded-circle mr-2" src="{{ asset('frontend') }}/images/avatar.jpg" alt="Avatar" width="30px" height="30px" style="vertical-align:baseline">
