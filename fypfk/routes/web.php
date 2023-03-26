@@ -29,3 +29,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'loadDashboard'])->name('dashboard');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'loadProfile'])->name('profile');

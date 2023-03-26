@@ -205,6 +205,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
                                 <div class="dropdown-divider"></div>
+                               <a class="dropdown-item text-danger" href="{{ route('profile.studentprofile') }}" onclick="event.preventDefault();
+                                                     document.getElementById('').submit();">
+                                    <i class="material-icons text-danger">person</i> Profile </a>
+
+                                <form id="logout-form" action="{{ route('userprofile.studentedit') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                                 <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="material-icons text-danger">&#xE879;</i> Logout </a>
