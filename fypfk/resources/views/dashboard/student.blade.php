@@ -18,8 +18,8 @@
     <div class="container" style="margin-bottom: 20px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="background-color: #FA8226">
-                <div class="card-header" style="background-color: #FA8226"><h5 style="color: black;"><b>{{ __('Week 4') }}</b></h5></div>
+            <div class="card" style="background-color: #86B5B3">
+                <div class="card-header" style="background-color: #86B5B3"><h5 style="color: black;"><b>{{ __('Week 4') }}</b></h5></div>
 
                 <table style="color: black; margin-left: 20px">
                     <tr>
