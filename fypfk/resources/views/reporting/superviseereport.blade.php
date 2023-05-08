@@ -4,7 +4,7 @@
 
 <!-- to display the alert message if the record has been deleted -->
 
-<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>PROJECT REPORT</b></h3>
+<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>PROJECT REPORT - {{$studData->name}}</b></h3>
 
 
 <div class="overflow-auto" style="overflow:auto;">

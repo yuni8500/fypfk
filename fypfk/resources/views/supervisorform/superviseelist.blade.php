@@ -17,7 +17,7 @@
             ],
             "language": {
                 search: '<i class="fa fa-search" aria-hidden="true"></i>',
-                searchPlaceholder: 'Search project title'
+                searchPlaceholder: 'Search session'
             }
         });
 
@@ -37,36 +37,40 @@
     {{ session()->get('message') }}
 </div>
 @endif
-<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>FYP LIBRARY</b></h3>
+<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>LIST OF SUPERVISEE</b></h3>
+
+<a href="{{ route('applicationList') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+<br><br>
 <div class="card">
 
     <div class="card-body">
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
+                <!-- FOR STAFF TO VIEW RECORD APPOINTMENT LIST START -->
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color: #86B5B3; color: black;">
                         <tr>
-                            <th><center>STUDENT NAME</center></th>
-                            <th><center>SUPERVISOR NAME</center></th>
-                            <th><center>EXPERT GROUP</center></th>
-                            <th><center>SEMESTER</center></th>
+                            <th><center>SUPERVISEE NAME</center></th>
+                            <th><center>STUDENT ID</center></th>
+                            <th><center>NUMBER PHONE</center></th>
+                            <th><center>EMAIL</center></th>
+                            <th><center>COURSE</center></th>
                             <th><center>PROJECT TITLE</center></th>
-                            <th><center>BACKGROUND PROBLEM</center></th>
-                            <th><center>OBJECTIVE</center></th>
-                            <th><center>SCOPE</center></th>
+                            <th><center>SEMESTER</center></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($libdata as $libdata)
+                        @foreach($superviseeList as $key=>$superviseedata)
                         <tr>
-                            <td>{{$libdata->superviseeName}}</td>
-                            <td>{{$libdata->supervisorName}}</td>
-                            <td>{{$libdata->course_group}}</td>
-                            <td>{{$libdata->semester}}</td>
-                            <td>{{$libdata->proposedTitle}}</td>
-                            <td>{{$libdata->problemStatement}}</td>
-                            <td>{{$libdata->objective}}</td>
-                            <td>{{$libdata->scope}}</td>
+                            <td><center>{{$superviseedata->name}}</center></td>
+                            <td><center>{{$superviseedata->matric}}</center></td>
+                            <td><center>{{$superviseedata->numPhone}}</center></td>
+                            <td><center>{{$superviseedata->email}}</center></td>
+                            <td><center>{{$superviseedata->course_group}}</center></td>
+                            <td><center>{{$superviseedata->proposedTitle}}</center></td>
+                            <td><center>{{$superviseedata->semester}}</center></td>
                         </tr>
                         @endforeach
                     </tbody>

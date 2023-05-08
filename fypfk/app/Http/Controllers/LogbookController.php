@@ -35,7 +35,7 @@ class LogbookController extends Controller
                 ->where('supervisorapply.superviseeID', $id)
                 ->get();
 
-                return view('logbook.addlogbook', compact('getdata',));
+                return view('logbook.addlogbook', compact('getdata'));
     }
 
     public function insertLogbook(Request $request)
@@ -72,7 +72,6 @@ class LogbookController extends Controller
         $logbookview = DB::table('logbook')
                 ->where('id', $id)
                 ->get();
-
             return view('logbook.editlogbook', compact('logbookview')); 
     }
 
@@ -88,7 +87,7 @@ class LogbookController extends Controller
 
         $updateLog->update();
 
-        return redirect()->back()->with('message', 'Profile Updated Successfully');
+        return redirect()->back()->with('message', 'Logbook Updated Successfully');
     }
 
     public function logbookDelete($id) //updatelogbook in database
@@ -102,5 +101,150 @@ class LogbookController extends Controller
 
         return redirect()->route('logbook');
 
+    }
+
+    //supervisor//
+    public function logbookSupervisee()
+    {
+        $id = Auth::user()->id;
+
+        $pta1 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 1')
+                ->get();
+
+        $pta2 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 2')
+                ->get();
+
+        $psm1 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 1')
+                ->get();
+
+        $psm2 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 2')
+                ->get();
+        
+        //verification data existing//
+        $pta1exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 1')
+                ->exists();
+
+        $pta2exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 2')
+                ->exists();
+
+        $psm1exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 1')
+                ->exists();
+
+        $psm2exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 2')
+                ->exists();
+
+        return view('logbook.listsuperviseelogbook', compact('pta1', 'pta2', 'psm1', 'psm2', 'pta1exist', 'pta2exist', 'psm1exist', 'psm2exist')); 
+    }
+
+    public function logbookSuperviseeView($id)
+    {
+        $studentName = DB::table('users')
+                ->where('id', $id)
+                ->first();
+
+        $superviseeLogbook = DB::table('logbook')
+                            ->join('users', 'users.id', '=', 'logbook.superviseeID')
+                            ->select([
+                                'users.id AS userID',
+                                'logbook.id AS logbookID', 'users.*', 'logbook.*'
+                            ])
+                            ->where('logbook.superviseeID', $id)
+                            ->get();
+        
+        $logbookUpdate = DB::table('logbook')
+                        ->where('approval', 'In Progress')
+                        ->exists();
+
+            return view('logbook.superviseeviewlog', compact('studentName', 'superviseeLogbook', 'logbookUpdate')); 
+    }
+
+    public function logbookEditSupervisee($id) //view updatelogbook page
+    {
+        $logbookdata = DB::table('logbook')
+                        ->join('users', 'users.id', '=', 'logbook.superviseeID')
+                        ->select([
+                            'users.id AS userID',
+                            'logbook.id AS logbookID', 'users.*', 'logbook.*'
+                        ])
+                        ->where('logbook.id', $id)
+                        ->get();
+
+            return view('logbook.editlogSupervisee', compact('logbookdata')); 
+    }
+
+    public function updateSuperviseeLogbook(Request $request, $id) //updatelogbookSupervisee in database
+    {
+        $updateLog = logbook::find($id); //model name
+
+        $updateLog->comment = $request->input('comment');
+        $updateLog->approval = 'Approved'; //blue from name input value
+
+        $updateLog->update();
+
+        return redirect()->back()->with('message', 'Supervisee Logbook Updated Successfully');
     }
 }

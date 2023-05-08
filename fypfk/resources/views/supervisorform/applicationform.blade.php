@@ -90,6 +90,12 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td style="text-align: center; color: black"><label>Semester</label></td>
+                            <td>
+                                <input type="type" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="semester" id="semester">
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: center; color: black"><label>Supervisor Name</label></td>
                             <td>
                                 <select name="supervisorName" id="supervisorName" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
@@ -113,9 +119,27 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="text-align: center; color: black">
+                                <label>Objective</label> <br>
+                                <strong style="color: red">*Must have 3 objective and <br> numbering each objective*</strong>
+                            </td>
+                            <td>
+                                <textarea class="form-control" name="objective" id="objective" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; color: black">
+                                <label>Scope</label> <br>
+                                <strong style="color: red">*Must numbering each scope*</strong>
+                            </td>
+                            <td>
+                                <textarea class="form-control" name="scope" id="scope" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: center; color: black"><label>Project Domain</label></td>
                             <td>
-                                <textarea class="form-control" name="domain" id="domain" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="domain" id="domain">
                             </td>
                         </tr>
                         <tr>

@@ -11,11 +11,14 @@ class Appointment extends Model
 
     protected $fillable = [
         'id',
-        'ssID',
+        'superviseeID',
+        'supervisorID',
         'appointTitle',
         'appointDate',
-        'appointTime',
+        'startTime',
+        'endTime',
         'purpose',
         'statusAppoint',
+        'appointLocation',
     ];
 }

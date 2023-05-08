@@ -66,17 +66,25 @@
                     </tr>
                     <tr>
                         <td style="padding-left: 30px;" colspan="2">
-                            <label>Course:</label>
+                            <label>Expert Group:</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select name="course" id="course" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" required>
-                                <option value="">Please select course</option>
-                                <option value="PTA 1">PTA 1</option>
-                                <option value="PTA 2">PTA 2</option>
-                                <option value="PSM 1">PSM 1</option>
-                                <option value="PSM 2">PSM 2</option>
+                            <select name="course" id="course" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" required value="{{$user->course_group}}">
+                                <option value="">Please select expert group</option>
+                                <option value="CSRG">CSRG</option>
+                                <option value="VISIC">VISIC</option>
+                                <option value="MIRG">MIRG</option>
+                                <option value="CY-SIG">CY-SIG</option>
+                                <option value="SERG">SERG</option>
+                                <option value="KECL">KECL</option>
+                                <option value="DSSim">DSSim</option>
+                                <option value="DBIS">DBIS</option>
+                                <option value="EDU-TECH">EDU-TECH</option>
+                                <option value="ISP">ISP</option>
+                                <option value="CNRG">CNRG</option>
+                                <option value="SCORE">SCORE</option>
                             </select>
                         </td>
                     </tr>

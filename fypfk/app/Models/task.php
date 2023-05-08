@@ -20,5 +20,6 @@ class task extends Model
         'taskDetails',
         'progress',
         'attachment',
+        'comment',
     ];
 }

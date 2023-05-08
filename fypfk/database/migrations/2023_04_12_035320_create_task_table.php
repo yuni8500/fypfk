@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('taskDetails');
             $table->string('progress');
             $table->string('attachment')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -86,9 +86,9 @@ class TaskController extends Controller
         $updateTask = task::find($id); //model name
 
         $path = public_path() . '/assets/' . $updateTask->attachment;
-        if (file_exists($path)) {
-            unlink($path);
-        }
+        // if (file_exists($path)) {
+           // unlink($path);
+       // }
 
         $updateTask->titleTask = $request->input('taskTitle');
         $updateTask->assignor = $request->input('assignor'); //blue from name input value
@@ -122,5 +122,221 @@ class TaskController extends Controller
 
         return redirect()->route('task');
 
+    }
+
+    //supervisor//
+    public function taskListSupervisee()
+    {
+        $id = Auth::user()->id;
+
+        $pta1 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 1')
+                ->get();
+
+        $pta2 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 2')
+                ->get();
+
+        $psm1 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 1')
+                ->get();
+
+        $psm2 = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 2')
+                ->get();
+        
+        //verification data existing//
+        $pta1exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 1')
+                ->exists();
+
+        $pta2exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PTA 2')
+                ->exists();
+
+        $psm1exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 1')
+                ->exists();
+
+        $psm2exist = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.supervisorID', $id)
+                ->where('supervisorapply.statusApplied', 'Approved')
+                ->where('users.course_group', 'PSM 2')
+                ->exists();
+
+        return view('task.listsuperviseetask', compact('pta1', 'pta2', 'psm1', 'psm2', 'pta1exist', 'pta2exist', 'psm1exist', 'psm2exist')); 
+    }
+
+    public function taskSuperviseeView($id)
+    {
+        $studentName = DB::table('users')
+                ->where('id', $id)
+                ->first();
+
+        $todo = DB::table('task')
+                ->join('users', 'users.id', '=', 'task.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'task.id AS taskID', 'users.*', 'task.*'
+                ])
+                ->where('task.superviseeID', $id)
+                ->where('task.progress', 'To Do')
+                ->get();
+
+        $doing = DB::table('task')
+                ->join('users', 'users.id', '=', 'task.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'task.id AS taskID', 'users.*', 'task.*'
+                ])
+                ->where('task.superviseeID', $id)
+                ->where('progress', 'Doing')
+                ->get();
+
+        $done = DB::table('task')
+                ->join('users', 'users.id', '=', 'task.superviseeID')
+                ->select([
+                    'users.id AS userID',
+                    'task.id AS taskID', 'users.*', 'task.*'
+                ])
+                ->where('task.superviseeID', $id)
+                ->where('progress', 'Done')
+                ->get();
+
+            return view('task.superviseeviewtask', compact('studentName', 'todo', 'doing', 'done')); 
+    }
+
+    public function createSuperviseeTask($id)
+    {
+        $userdata = DB::table('supervisorapply')
+                ->join('users as supervisee', 'supervisorapply.superviseeID', '=', 'supervisee.id')
+                ->join('users as supervisor', 'supervisorapply.supervisorID', '=', 'supervisor.id')
+                ->select([
+                    'supervisorapply.id AS applyID', 'supervisee.*', 'supervisor.*', 'supervisorapply.*', 'supervisee.name as superviseeName', 'supervisee.id as superviseeID', 'supervisee.matric as superviseeMatric', 'supervisor.name as supervisorName'
+                ])
+                ->where('supervisee.id', $id)
+                ->first();
+
+        return view('task.createtasksupervisee', compact('userdata')); 
+    }
+
+    public function insertSuperviseeTask(Request $request, $id)
+    {
+        $taskTitle = $request->input('taskTitle');
+        $assignor = $request->input('assignor');
+        $dueDate = $request->input('dueDate');
+        $priority = $request->input('priority');
+        $status = $request->input('status');
+        $taskDetails = $request->input('taskDetails');
+        $process = $request->input('process');
+
+        $data = array(
+            'superviseeID' => $id,
+            'titleTask' => $taskTitle,
+            'assignor' => $assignor,
+            'dueDate' => $dueDate,
+            'priority' => $priority,
+            'status' => $status,
+            'taskDetails' => $taskDetails,
+            'progress' => $process,
+        );
+
+        // insert query
+        DB::table('task')->insert($data);
+
+        return redirect()->back()->with('message', 'Create Task Successfully');
+    }
+
+    public function viewTaskSupervisee($id)
+    {
+        $taskview = DB::table('task')
+                ->where('id', $id)
+                ->get();
+        
+        $fileexist = DB::table('task')
+                    ->where('id', $id)
+                    ->where('attachment', null)
+                    ->exists();
+
+        return view('task.viewtasksupervisee', compact('taskview', 'fileexist')); 
+    }
+
+    public function updateTaskSupervisee(Request $request, $id) //updatelogbook in database
+    {
+        $updateTask = task::find($id); //model name
+
+        $updateTask->dueDate = $request->input('dueDate');
+        $updateTask->taskDetails = $request->input('taskDetails');
+        $updateTask->comment = $request->input('comment');
+
+        $updateTask->update();
+
+        return redirect()->back()->with('message', 'Task Updated Successfully');
+    }
+
+    public function deleteSuperviseeTask($id) //updatelogbook in database
+    {
+        $deleteTask = task::find($id); //model name
+        
+        if ($deleteTask) {
+            // If the record exists, delete it
+            $deleteTask->delete();
+        }
+
+        return redirect()->route('taskSuperviseeView', $id);
     }
 }

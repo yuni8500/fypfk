@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('superviseeID');
             $table->bigInteger('supervisorID');
+            $table->string('semester');
             $table->string('proposedTitle');
             $table->string('problemStatement');
+            $table->string('objective');
+            $table->string('scope');
             $table->string('domain');
             $table->string('declaration');
             $table->date('dateAgree')->nullable();

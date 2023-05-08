@@ -98,45 +98,57 @@
 
                     @if( auth()->user()->category== "Staff")
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Quota</span>
+                        <a class="nav-link {{ request()->routeIs('quotaSupervisor*') ? 'active' : '' }}" href="{{ route('quotaSupervisor') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">groups</i>
+                            <span>Supervisor Quota</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Application</span>
+                        <a class="nav-link {{ request()->routeIs('applicationform*') ? 'active' : '' }}" href="{{ route('applicationList')}}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">assignment</i>
+                            <span>Supervisor Application</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Appointment Meeting</span>
+                        <a class="nav-link {{ request()->routeIs('appointment*') ? 'active' : '' }}" href="{{ route('appointment') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">event</i>
+                            <span>Appointment Meeting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Logbook</span>
+                        <a class="nav-link {{ request()->routeIs('logbook*') ? 'active' : '' }}" href="{{ route('logbookSupervisee') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">import_contacts</i>
+                            <span>Logbook</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisee Task</span>
+                        <a class="nav-link {{ request()->routeIs('task*') ? 'active' : '' }}" href="{{ route('taskListSupervisee') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">toc</i>
+                            <span>Supervisee Task</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Reporting</span>
+                        <a class="nav-link {{ request()->routeIs('report*') ? 'active' : '' }}" href="{{ route('reportListSupervisee') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">pie_chart</i>
+                            <span>Reporting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Evaluation</span>
+                        <a class="nav-link {{ request()->routeIs('evaluation*') ? 'active' : '' }}" href="{{ route('supervisorEvaluation') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">streetview</i>
+                            <span>Evaluation</span></b>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('submission*') ? 'active' : '' }}" href="{{ route('submission') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">cloud_upload</i>
+                            <span>Submission</span></b>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('fypLibrary*') ? 'active' : '' }}" href="{{ route('fypLibrary') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">library_books</i>
+                            <span>FYP Library</span></b>
                         </a>
                     </li>
                     @endif
@@ -223,13 +235,9 @@
                                 <form id="logout-form" action="" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}">
                                     <i class="material-icons text-danger">&#xE879;</i> Logout </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
                             </div>
                         </li>
                     </ul>

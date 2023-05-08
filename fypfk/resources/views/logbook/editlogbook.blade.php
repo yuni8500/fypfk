@@ -53,8 +53,8 @@
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>UPDATE</b>
                                     </button>
-                                    <a class="btn" href="{{ route('logbook') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #145956">
-                                        <b>CANCEL</b>
+                                    <a class="btn" href="{{ route('logbook') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3">
+                                        <b>BACK</b>
                                     </a>
                                     <a class="btn btn-danger" href="{{ route('logbookDelete', $data->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>DELETE</b>

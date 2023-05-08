@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('appointment', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->bigInteger('ssID');
+            $table->bigInteger('superviseeID');
+            $table->bigInteger('supervisorID');
             $table->string('appointTitle');
             $table->date('appointDate');
-            $table->time('appointTime');
+            $table->time('startTime');
+            $table->time('endTime');
             $table->string('purpose');
             $table->string('statusAppoint');
+            $table->string('appointLocation')->nullable();
+            $table->timestamps();
         });
     }
 

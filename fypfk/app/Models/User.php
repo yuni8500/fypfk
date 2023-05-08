@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'numPhone',
         'matric',
+        'course_group',
         'password',
         'category',
     ];

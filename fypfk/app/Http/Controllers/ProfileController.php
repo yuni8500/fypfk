@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\infoprofile;
@@ -11,8 +12,19 @@ class ProfileController extends Controller
     //authorize session from user type
     public function loadProfile($id)
     {
+        $category = Auth::user()->category;
         $user = User::find($id);
-        return view('profile.studentprofile', ['user' => $user]);
+
+        if ($category == 'Student') {
+            return view('profile.studentprofile', ['user' => $user]);
+        }
+        if ($category == 'Staff') {
+            return view('profile.staffprofile', ['user' => $user]);
+        }
+        if ($category == 'Admin') {
+            //dd(Auth::user()->id);
+            return view('dashboard.admin');
+        }
         
     }
 
@@ -24,6 +36,7 @@ class ProfileController extends Controller
         $user->email = $request->input('email');
         $user->numPhone = $request->input('numPhone');
         $user->matric = $request->input('matric');
+        $user->course_group = $request->input('course');
 
         $user->update();
 

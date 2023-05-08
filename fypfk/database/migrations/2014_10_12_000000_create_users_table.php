@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('numPhone');
             $table->string('matric');
+            $table->string('course_group')->nullable();
             $table->string('password');
             $table->string('category');
             $table->rememberToken();
