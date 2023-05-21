@@ -14,11 +14,24 @@ class LogbookController extends Controller
     {
         $id = Auth::user()->id;
 
+        //$logbookview = DB::table('logbook')
+               // ->where('superviseeID', $id)
+                //->get();
+
         $logbookview = DB::table('logbook')
-                ->where('superviseeID', $id)
+                ->join('appointment', 'appointment.id', '=', 'logbook.appointmentID')
+                ->select([
+                    'appointment.id AS appointmentID',
+                    'logbook.id AS logbookID', 'appointment.*', 'logbook.*'
+                ])
+                ->where('logbook.superviseeID', $id)
                 ->get();
 
-            return view('logbook.supervisorlb', compact('logbookview')); 
+        $logbookUpdate = DB::table('logbook')
+                        ->where('approval', 'In Progress')
+                        ->exists();
+
+            return view('logbook.supervisorlb', compact('logbookview', 'logbookUpdate')); 
     }
 
     public function logbookAdd()
@@ -35,7 +48,15 @@ class LogbookController extends Controller
                 ->where('supervisorapply.superviseeID', $id)
                 ->get();
 
-                return view('logbook.addlogbook', compact('getdata'));
+        $appointmentData = DB::table('appointment')
+                ->where('superviseeID', $id)
+                ->where('statusAppoint', 'Approved')
+                ->whereNotIn('id', function($query) {
+                        $query->select('appointmentID')->from('logbook');
+                })
+                ->get();
+
+                return view('logbook.addlogbook', compact('getdata', 'appointmentData'));
     }
 
     public function insertLogbook(Request $request)
@@ -43,20 +64,14 @@ class LogbookController extends Controller
         $id = Auth::user()->id;
 
         $supervisorID = $request->input('supervisorID');
-        $week = $request->input('week');
-        $dateLog = $request->input('dateLog');
-        $tStart = $request->input('tStart');
-        $tEnd = $request->input('tEnd');
+        $appointmentID = $request->input('date');
         $progress = $request->input('progress');
 
 
         $data = array(
             'superviseeID' => $id,
             'supervisorID' => $supervisorID,
-            'weekLog' => $week,
-            'dateLog' => $dateLog,
-            'timeStart' => $tStart,
-            'timeEnd' => $tEnd,
+            'appointmentID' => $appointmentID,
             'progress' => $progress,
             'approval' => "In Progress",
         );
@@ -70,8 +85,14 @@ class LogbookController extends Controller
     public function logbookEdit($id) //view updatelogbook page
     {
         $logbookview = DB::table('logbook')
-                ->where('id', $id)
-                ->get();
+                    ->join('appointment', 'appointment.id', '=', 'logbook.appointmentID')
+                    ->select([
+                        'appointment.id AS appointmentID',
+                        'logbook.id AS logbookID', 'appointment.*', 'logbook.*'
+                        ])
+                    ->where('logbook.id', $id)
+                    ->get();
+
             return view('logbook.editlogbook', compact('logbookview')); 
     }
 
@@ -79,10 +100,6 @@ class LogbookController extends Controller
     {
         $updateLog = logbook::find($id); //model name
 
-        $updateLog->weekLog = $request->input('week');
-        $updateLog->dateLog = $request->input('dateLog'); //blue from name input value
-        $updateLog->timeStart = $request->input('tStart');
-        $updateLog->timeEnd = $request->input('tEnd');
         $updateLog->progress = $request->input('progress');
 
         $updateLog->update();
@@ -207,10 +224,10 @@ class LogbookController extends Controller
                 ->first();
 
         $superviseeLogbook = DB::table('logbook')
-                            ->join('users', 'users.id', '=', 'logbook.superviseeID')
+                            ->join('appointment', 'appointment.id', '=', 'logbook.appointmentID')
                             ->select([
-                                'users.id AS userID',
-                                'logbook.id AS logbookID', 'users.*', 'logbook.*'
+                                'appointment.id AS appointID', 
+                                'logbook.id AS logbookID', 'appointment.*', 'logbook.*'
                             ])
                             ->where('logbook.superviseeID', $id)
                             ->get();
@@ -226,9 +243,11 @@ class LogbookController extends Controller
     {
         $logbookdata = DB::table('logbook')
                         ->join('users', 'users.id', '=', 'logbook.superviseeID')
+                        ->join('appointment', 'appointment.id', '=', 'logbook.appointmentID')
                         ->select([
                             'users.id AS userID',
-                            'logbook.id AS logbookID', 'users.*', 'logbook.*'
+                            'appointment.id AS appointID',
+                            'logbook.id AS logbookID', 'users.*', 'appointment.*', 'logbook.*'
                         ])
                         ->where('logbook.id', $id)
                         ->get();

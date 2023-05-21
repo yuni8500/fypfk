@@ -25,7 +25,7 @@
                             <th rowspan="2"><center>PROGRESS</center></th>
                             <th rowspan="2"><center>SUPERVISOR COMMENT</center></th>
                             <th rowspan="2"><center>APPROVAL</center></th>
-                            <th rowspan="2"><center>UPDATE</center></th>
+                            <th rowspan="2"><center>ACTION</center></th>
                         </tr>
                         <tr>
                             <th><center>START</center></th>
@@ -35,16 +35,16 @@
                     <tbody>
                         @foreach($superviseeLogbook as $data)
                         <tr>
-                            <td><label>{{$data->dateLog}}</label></td>
-                            <td><label>{{$data->timeStart}}</label></td>
-                            <td><label>{{$data->timeEnd}}</label></td>
+                            <td><label>{{$data->appointDate}}</label></td>
+                            <td><label>{{$data->startTime}}</label></td>
+                            <td><label>{{$data->endTime}}</label></td>
                             <td><label>{{$data->progress}}</label></td>
                             <td><label>{{$data->comment}}</label></td>
                             <td><label>{{$data->approval}}</label></td>
                             @if($logbookUpdate)
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('logbookEditSupervisee', $data->logbookID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('logbookEditSupervisee', $data->logbookID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>UPDATE</b>
                                     </a>
                                 </center>

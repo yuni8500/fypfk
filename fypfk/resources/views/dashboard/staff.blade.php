@@ -15,56 +15,44 @@
     <h3 style="color: black; padding-left: 5px;"><b>ANNOUNCEMENT BOARD</b></h3>
     <hr style="border: 1px solid black">
 
+    @foreach($announcementData as $data)
     <div class="container" style="margin-bottom: 20px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="background-color: #86B5B3">
-                <div class="card-header" style="background-color: #86B5B3"><h5 style="color: black;"><b>{{ __('Week 4') }}</b></h5></div>
 
                 <table style="color: black; margin-left: 20px">
                     <tr>
-                        <td colspan="2">
-                            <label><b>PSM 1 & PTA 1 Colloquium</b></label>
+                        <td>
+                            <div class="card-header" style="background-color: #86B5B3"><h5 style="color: black;"><b>Week {{$data->week}}</b></h5></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Date:</label>
-                        </td>
-                        <td>
-                            <label>9 NOVEMBER 2022</label>
+                            <label><b>{{$data->title}}</b></label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Time:</label>
-                        </td>
-                        <td>
-                            <label>4:00PM - 5:00PM</label>
+                            <label>Date: {{$data->date}}</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Platform:</label>
-                        </td>
-                        <td>
-                            <label>Microsoft Teams</label>
+                            <label>Time: {{$data->time}}</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Link:</label>
-                        </td>
-                        <td>
-                            <label>CLICK HERE</label>
+                            <label>{{$data->information}}</label>
                         </td>
                     </tr>
                 </table>
-                </div>
             </div>
         </div>
     </div>
     </div>
+    @endforeach
 </div>
 
 @endsection

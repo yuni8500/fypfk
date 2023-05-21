@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <center>
                                     <h5 style="color: black"><b>Total Task</b></h5>
-                                    <label style="font-size: 50px">10</label>
+                                    <label style="font-size: 50px">{{ $countTask }}</label>
                                 </center>
                             </div>
                         </div>
@@ -78,9 +78,9 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Status', 'Total'],
-          ['On Track',     11],
-          ['Off Track',      5],
-          ['Risk',  2]
+          ['On Track',     {{ $countOntrack ? $countOntrack->count : 0 }} ],
+          ['Off Track',    {{ $countOfftrack ? $countOfftrack->count : 0 }} ],
+          ['Risk',  {{ $countRisk ? $countRisk->count : 0 }} ]
         ]);
 
         var options = {
@@ -102,9 +102,9 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Priority', 'Total'],
-          ['High',     5],
-          ['Medium',      10],
-          ['Low',  4]
+          ['High',     {{ $countHigh ? $countHigh->count : 0 }} ],
+          ['Medium',   {{ $countMedium ? $countMedium->count : 0 }} ],
+          ['Low', {{ $countLow ? $countLow->count : 0 }}]
         ]);
 
         var options = {
@@ -123,9 +123,9 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task Complete', 'Hours per Day'],
-          ['Completed',     11],
-          ['In Complete',      5]
+          ['Task Complete', 'Total'],
+          ['Completed',     {{ $countComplete ? $countComplete->count : 0 }} ],
+          ['In Complete',   {{ $countIncomplete ? $countIncomplete->count : 0 }} ]
         ]);
 
         var options = {

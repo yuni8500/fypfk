@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('purpose');
             $table->string('statusAppoint');
             $table->string('appointLocation')->nullable();
+            $table->string('reasonReject')->nullable();
             $table->timestamps();
         });
     }

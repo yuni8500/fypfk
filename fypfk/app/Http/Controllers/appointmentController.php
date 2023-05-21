@@ -28,6 +28,21 @@ class appointmentController extends Controller
                 ->where('superviseeID', $id)
                 ->where('statusAppoint', 'Approved')
                 ->exists();
+
+        $rejected = DB::table('appointment')
+                    ->join('users', 'users.id', '=', 'appointment.supervisorID')
+                    ->select([
+                        'users.id AS userID',
+                        'appointment.id AS appointmentID', 'users.*', 'appointment.*'
+                    ])
+                    ->where('appointment.superviseeID', $id)
+                    ->where('statusAppoint', 'Rejected')
+                    ->get();
+
+        $rejectedexist = DB::table('appointment')
+                ->where('superviseeID', $id)
+                ->where('statusAppoint', 'Rejected')
+                ->exists();
         
         $inProgress = DB::table('appointment')
                     ->join('users', 'users.id', '=', 'appointment.supervisorID')
@@ -74,7 +89,7 @@ class appointmentController extends Controller
                             ->where('statusAppoint', 'Approved')
                             ->get();
 
-        return view('meeting.appointment', compact('approved', 'approvedexist', 'inProgress', 'inprogressexist', 'inProgressSupervisor', 'inprogressexistSupervisor', 'approvedexistSupervisor', 'approvedSupervisor')); 
+        return view('meeting.appointment', compact('approved', 'approvedexist', 'rejected', 'rejectedexist', 'inProgress', 'inprogressexist', 'inProgressSupervisor', 'inprogressexistSupervisor', 'approvedexistSupervisor', 'approvedSupervisor')); 
     }
 
     public function createAppointment()
@@ -194,11 +209,8 @@ class appointmentController extends Controller
     {
         $updateAppointment = Appointment::find($id); //model name
 
-        $updateAppointment->appointDate = $request->input('date'); //blue from name input value
-        $updateAppointment->startTime = $request->input('timeStart');
-        $updateAppointment->endtime = $request->input('timeEnd');
-        $updateAppointment->statusAppoint = 'Approved';
-        $updateAppointment->appointLocation = $request->input('location');
+        $updateAppointment->statusAppoint = 'Rejected';
+        $updateAppointment->reasonReject = $request->input('reason');
 
         $updateAppointment->update();
 

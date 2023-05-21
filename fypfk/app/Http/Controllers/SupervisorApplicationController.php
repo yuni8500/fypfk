@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\supervisorapply;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SupervisorApplicationController extends Controller
 {
@@ -116,7 +117,9 @@ class SupervisorApplicationController extends Controller
                 ->where('supervisorapply.id', $id)
                 ->get();
 
-            return view('supervisorform.viewapplication', compact('studData', 'applydata'));     
+        $currentDate = Carbon::now()->format('Y-m-d');
+
+            return view('supervisorform.viewapplication', compact('studData', 'applydata', 'currentDate'));     
     }
 
     public function updateApplicationAgree(Request $request, $id) //updatelogbook in database
@@ -131,11 +134,26 @@ class SupervisorApplicationController extends Controller
         return redirect()->back()->with('message', 'Supervisor Application Updated Successfully');
     }
 
+    public function addRejectInfo($id)
+    {
+        $idApply = DB::table('supervisorapply')
+                ->join('users', 'users.id', '=', 'supervisorapply.supervisorID')
+                ->select([
+                    'users.id AS userID',
+                    'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                ])
+                ->where('supervisorapply.id', $id)
+                ->first();
+
+            return view('supervisorform.additionalApplication', compact('idApply'));     
+    }
+
     public function updateApplicationDisagree(Request $request, $id) //updatelogbook in database
     {
         $updateApplication = supervisorapply::find($id); //model name
 
         $updateApplication->statusApplied = 'Rejected';
+        $updateApplication->reasonReject = $request->input('reason');
 
         $updateApplication->update();
 

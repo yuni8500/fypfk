@@ -20,5 +20,6 @@ class Appointment extends Model
         'purpose',
         'statusAppoint',
         'appointLocation',
+        'reasonReject',
     ];
 }

@@ -33,17 +33,30 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'loadDashboard'])->name('dashboard');
 
+Route::get('/createAnnouncement', [App\Http\Controllers\AnnouncementController::class, 'createAnnouncement'])->name('createAnnouncement');
+Route::post('/insertAnnouncement', [App\Http\Controllers\AnnouncementController::class, 'insertAnnouncement'])->name('insertAnnouncement'); 
+Route::get('/viewAnnouncement/{id}', [App\Http\Controllers\AnnouncementController::class, 'viewAnnouncement'])->name('viewAnnouncement'); 
+Route::put('/updateAnnouncement/{id}', [App\Http\Controllers\AnnouncementController::class, 'updateAnnouncement'])->name('updateAnnouncement'); 
+Route::get('/deleteAnnouncement/{id}', [App\Http\Controllers\AnnouncementController::class, 'deleteAnnouncement'])->name('deleteAnnouncement');
+
 Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'loadProfile'])->name('profile'); //link kat google //function kat controller //panggil route
 Route::put('/profileUpdate/{id}', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('updateProfile'); //update
+Route::put('/profileUpdateAdmin/{id}', [App\Http\Controllers\ProfileController::class, 'updateProfileAdmin'])->name('updateProfileAdmin'); //admin//
 
 Route::get('/supervisorQuota', [App\Http\Controllers\QuotaController::class, 'loadQuota'])->name('quotaSupervisor');
+Route::get('/createSupervisorQuota', [App\Http\Controllers\QuotaController::class, 'createSupervisorQuota'])->name('createSupervisorQuota');
+Route::post('/insertSupervisorQuota', [App\Http\Controllers\QuotaController::class, 'insertSupervisorQuota'])->name('insertSupervisorQuota');
+Route::get('/viewSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'viewSupervisorQuota'])->name('viewSupervisorQuota');
+Route::put('/updateSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'updateSupervisorQuota'])->name('updateSupervisorQuota');
+Route::get('/deleteSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'deleteSupervisorQuota'])->name('deleteSupervisorQuota');
 
 Route::get('/supervisorApplication', [App\Http\Controllers\SupervisorApplicationController::class, 'loadApplication'])->name('applicationform');
 Route::post('/insertApplication', [App\Http\Controllers\SupervisorApplicationController::class, 'insertApplication'])->name('insertApplication'); //insert database
 Route::get('/supervisorApplicationList', [App\Http\Controllers\SupervisorApplicationController::class, 'applicationList'])->name('applicationList');//supervisor
 Route::get('/viewSupervisorApplication/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'viewApplication'])->name('viewApplication');
 Route::put('/updateApplicationAgree/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'updateApplicationAgree'])->name('updateApplicationAgree');
-Route::get('/updateApplicationDisagree/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'updateApplicationDisagree'])->name('updateApplicationDisagree');
+Route::get('/addInfoSupervisorApplication/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'addRejectInfo'])->name('addRejectInfo');
+Route::post('/updateApplicationDisagree/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'updateApplicationDisagree'])->name('updateApplicationDisagree');
 Route::get('/superviseeList', [App\Http\Controllers\SupervisorApplicationController::class, 'superviseeList'])->name('superviseeList');
 
 Route::get('/appointment', [App\Http\Controllers\appointmentController::class, 'loadAppointment'])->name('appointment');
@@ -84,6 +97,7 @@ Route::get('/deleteSuperviseeTask/{id}', [App\Http\Controllers\TaskController::c
 
 Route::get('/evaluation', [App\Http\Controllers\EvaluationController::class, 'loadEvaluation'])->name('evaluation');
 Route::get('/supervisorEvaluation', [App\Http\Controllers\EvaluationController::class, 'supervisorEvaluation'])->name('supervisorEvaluation');
+Route::get('/evaluationGraded', [App\Http\Controllers\EvaluationController::class, 'evaluationGraded'])->name('evaluationGraded');
 
 Route::get('/reporting', [App\Http\Controllers\ReportController::class, 'loadReport'])->name('report');
 Route::get('/reportListSupervisee', [App\Http\Controllers\ReportController::class, 'reportListSupervisee'])->name('reportListSupervisee');//supervisor
@@ -91,6 +105,8 @@ Route::get('/reportSuperviseeView/{id}', [App\Http\Controllers\ReportController:
 
 Route::get('/submission', [App\Http\Controllers\SubmissionController::class, 'loadSubmission'])->name('submission');
 Route::get('/viewSubmission', [App\Http\Controllers\SubmissionController::class, 'viewSubmission'])->name('viewSubmission');
-Route::get('/viewSuperviseeSubmission', [App\Http\Controllers\SubmissionController::class, 'viewSuperviseeSubmission'])->name('viewSuperviseeSubmission');
+Route::get('/viewFinalSubmission', [App\Http\Controllers\SubmissionController::class, 'viewFinalSubmission'])->name('viewFinalSubmission');
+Route::get('/viewSuperviseeSubmission', [App\Http\Controllers\SubmissionController::class, 'viewSuperviseeSubmission'])->name('viewSuperviseeSubmission'); //supervisor
+Route::get('/submissionGraded/{id}', [App\Http\Controllers\SubmissionController::class, 'submissionGraded'])->name('submissionGraded'); 
 
 Route::get('/fypLibrary', [App\Http\Controllers\FyplibraryController::class, 'loadFypLibrary'])->name('fypLibrary');

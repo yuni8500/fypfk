@@ -44,7 +44,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Due Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="{{$data->dueDate}}">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="{{$data->dueDate}}" readonly>
                             </td>
                             <td style="text-align: center; color: black"><label>Priority</label></td>
                             <td>
@@ -58,7 +58,7 @@
                             </td>
                             <td style="text-align: center; color: black"><label>Task Details</label></td>
                             <td>
-                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;">{{$data->taskDetails}}</textarea>
+                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" readonly>{{$data->taskDetails}}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -80,6 +80,21 @@
                             <td style="text-align: center; color: black"><label>Comment</label></td>
                             <td colspan="3">
                                 <textarea class="form-control" name="comment" id="comment" rows="4" style="background-color: #86B5B3; border-radius: 10px; width: 100%;">{{$data->comment}}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; color: black"><label>Supervisor Attachment</label></td>
+                            <td colspan="3">
+                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorAttachment" id="supervisorAttachment" accept="application/pdf" onchange="loadFile(this)">
+                                <!-- to preview the file from the input type in div -->
+                                <!--<div id="dvPreview" style="width: 455px; height: 405px; border-style: dashed"></div> -->
+                                @if($superviseefileexist)
+                                
+                                @elseif(! $superviseefileexist)
+                                <div>
+                                    <iframe src="/assets/{{$data->supervisorAttachment}}" width="500" height="400"></iframe>
+                                </div>
+                                @endif
                             </td>
                         </tr>
                         <tr>

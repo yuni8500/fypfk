@@ -11,8 +11,14 @@ class EvaluationController extends Controller
         return view('evaluation.evaluationinfo'); 
     }
 
+    //supervisor//
     public function supervisorEvaluation()
     {
         return view('evaluation.evaluationsupervisor'); 
+    }
+
+    public function evaluationGraded()
+    {
+        return view('evaluation.evaluationgraded'); 
     }
 }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('declaration');
             $table->date('dateAgree')->nullable();
             $table->string('statusApplied');
+            $table->string('reasonReject')->nullable();
             $table->timestamps();
         });
     }

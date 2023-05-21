@@ -123,7 +123,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Date Approval</label></td>
                             <td>
-                            <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="dateApproved" id="dateApproved" value="">
+                            <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="dateApproved" id="dateApproved" value="{{ $currentDate }}" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -137,7 +137,7 @@
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>AGREE</b>
                                     </button>
-                                    <a class="btn btn-danger" href="{{ route('updateApplicationDisagree', $applydata->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
+                                    <a class="btn btn-danger" href="{{ route('addRejectInfo', $applydata->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>DISAGREE</b>
                                     </a>
                                     <a class="btn" href="{{ route('applicationList') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3">

@@ -22,5 +22,6 @@ class supervisorapply extends Model
         'declaration',
         'dateAgree',
         'statusApplied',
+        'reasonReject',
     ];
 }

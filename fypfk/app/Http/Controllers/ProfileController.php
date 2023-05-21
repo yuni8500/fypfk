@@ -23,7 +23,7 @@ class ProfileController extends Controller
         }
         if ($category == 'Admin') {
             //dd(Auth::user()->id);
-            return view('dashboard.admin');
+            return view('profile.adminprofile', ['user' => $user]);
         }
         
     }
@@ -37,6 +37,21 @@ class ProfileController extends Controller
         $user->numPhone = $request->input('numPhone');
         $user->matric = $request->input('matric');
         $user->course_group = $request->input('course');
+        
+
+        $user->update();
+
+        return redirect()->back()->with('message', 'Profile Updated Successfully');
+    }
+
+    public function updateProfileAdmin(Request $request, $id) //request apa value input from user untk update, insert
+    {
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->numPhone = $request->input('numPhone');
+        $user->matric = $request->input('matric');
 
         $user->update();
 

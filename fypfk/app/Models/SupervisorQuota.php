@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class logbook extends Model
+class SupervisorQuota extends Model
 {
-    protected $table = 'logbook';
+    protected $table = 'supervisorquota';
 
     protected $fillable = [
         'id',
-        'superviseeID',
         'supervisorID',
-        'appointmentID',
-        'progress',
-        'comment',
-        'approval',
+        'quota',
     ];
 }

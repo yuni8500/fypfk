@@ -21,34 +21,30 @@
                     @csrf
                     @method('PUT')
                     <tbody>
-                    <tr>
+                        <tr>
                             <td><label>Student Name</label></td>
-                            <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="week" id="week" value="{{$data->name}}" required readonly>
-                            </td>
-                            <td><label>Student ID</label></td>
-                            <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->matric}}" required readonly>
+                            <td colspan="3">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="week" id="week" value="{{$data->name}}" required readonly>
                             </td>
                         </tr>
                         <tr>
-                            <td><label>Week</label></td>
+                            <td><label>Student ID</label></td>
                             <td>
-                                <input type="number" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="week" id="week" value="{{$data->weekLog}}" required readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->matric}}" required readonly>
                             </td>
                             <td><label>Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->dateLog}}" required readonly>
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->appointDate}}" required readonly>
                             </td>
                         </tr>
                         <tr>
                             <td><label>Time Start</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tStart" id="tStart" value="{{$data->timeStart}}" required readonly>
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="tStart" id="tStart" value="{{$data->startTime}}" required readonly>
                             </td>
                             <td><label>Time End</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tEnd" id="tEnd" value="{{$data->timeEnd}}" required readonly>
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="tEnd" id="tEnd" value="{{$data->endTime}}" required readonly>
                             </td>
                         </tr>
                         <tr>
@@ -60,7 +56,7 @@
                         <tr>
                             <td><label>Supervisor Comment</label></td>
                             <td colspan="3">
-                            <textarea class="form-control" name="comment" id="comment" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                            <textarea class="form-control" name="comment" id="comment" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;">{{$data->comment}}</textarea>
                             </td>
                         </tr>
                         <tr>

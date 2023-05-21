@@ -12,29 +12,18 @@ class DashboardController extends Controller
     {
         $category = Auth::user()->category;
 
-        //if ($category == 'Student') {
-            //$id = Auth::user()->id;
-
-            //if student info exists in the table 
-            //if (DB::table('infoprofile')
-               //->where('userID', $id)
-                //->exists()
-            //) {
-               // return view('dashboard.student');
-            //} else {
-                //return view('student.profile');
-            //}
-        //}
+        $announcementData = DB::table('announcement')
+                            ->get();
 
         if ($category == 'Student') {
-            return view('dashboard.student');
+            return view('dashboard.student', compact('announcementData'));
         }
         if ($category == 'Staff') {
-            return view('dashboard.staff');
+            return view('dashboard.staff', compact('announcementData'));
         }
         if ($category == 'Admin') {
             //dd(Auth::user()->id);
-            return view('dashboard.admin');
+            return view('dashboard.admin', compact('announcementData'));
         }
     }
 }

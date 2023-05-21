@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('progress');
             $table->string('attachment')->nullable();
             $table->string('comment')->nullable();
+            $table->string('supervisorAttachment')->nullable();
             $table->timestamps();
         });
     }

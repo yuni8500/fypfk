@@ -17,28 +17,24 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 @foreach($logbookview as $data)
-                <form method="post" action="{{ route('updateLogbook', $data->id) }}">
+                <form method="post" action="{{ route('updateLogbook', $data->logbookID) }}">
                     @csrf
                     @method('PUT')
                     <tbody>
                         <tr>
-                            <td><label>Week</label></td>
-                            <td>
-                                <input type="number" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="week" id="week" value="{{$data->weekLog}}" required>
-                            </td>
                             <td><label>Date</label></td>
-                            <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->dateLog}}" required>
+                            <td colspan="3">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="dateLog" id="dateLog" value="{{$data->appointDate}}" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td><label>Time Start</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tStart" id="tStart" value="{{$data->timeStart}}" required>
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tStart" id="tStart" value="{{$data->startTime}}" readonly>
                             </td>
                             <td><label>Time End</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tEnd" id="tEnd" value="{{$data->timeEnd}}" required>
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tEnd" id="tEnd" value="{{$data->endTime}}" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -56,7 +52,7 @@
                                     <a class="btn" href="{{ route('logbook') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3">
                                         <b>BACK</b>
                                     </a>
-                                    <a class="btn btn-danger" href="{{ route('logbookDelete', $data->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
+                                    <a class="btn btn-danger" href="{{ route('logbookDelete', $data->logbookID) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>DELETE</b>
                                     </a>
                                 </center>

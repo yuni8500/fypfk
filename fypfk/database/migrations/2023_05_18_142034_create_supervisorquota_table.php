@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logbook', function (Blueprint $table) {
+        Schema::create('supervisorquota', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('superviseeID');
             $table->bigInteger('supervisorID');
-            $table->bigInteger('appointmentID');
-            $table->string('progress');
-            $table->string('comment')->nullable();
-            $table->string('approval');
+            $table->bigInteger('quota');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logbook');
+        Schema::dropIfExists('supervisorquota');
     }
 };

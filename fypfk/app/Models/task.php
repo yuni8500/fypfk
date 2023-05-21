@@ -21,5 +21,6 @@ class task extends Model
         'progress',
         'attachment',
         'comment',
+        'supervisorAttachment',
     ];
 }

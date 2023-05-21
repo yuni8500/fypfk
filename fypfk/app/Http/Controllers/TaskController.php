@@ -78,7 +78,17 @@ class TaskController extends Controller
                 ->where('id', $id)
                 ->get();
 
-        return view('task.viewtask', compact('taskview')); 
+        $fileexist = DB::table('task')
+                ->where('id', $id)
+                ->where('attachment', null)
+                ->exists();
+
+        $superviseefileexist = DB::table('task')
+                ->where('id', $id)
+                ->where('supervisorAttachment', null)
+                ->exists();
+
+        return view('task.viewtask', compact('taskview', 'fileexist', 'superviseefileexist')); 
     }
 
     public function updateTask(Request $request, $id) //updatelogbook in database
@@ -312,16 +322,29 @@ class TaskController extends Controller
                     ->where('attachment', null)
                     ->exists();
 
-        return view('task.viewtasksupervisee', compact('taskview', 'fileexist')); 
+        $superviseefileexist = DB::table('task')
+                    ->where('id', $id)
+                    ->where('supervisorAttachment', null)
+                    ->exists();
+
+        return view('task.viewtasksupervisee', compact('taskview', 'fileexist', 'superviseefileexist')); 
     }
 
     public function updateTaskSupervisee(Request $request, $id) //updatelogbook in database
     {
         $updateTask = task::find($id); //model name
 
-        $updateTask->dueDate = $request->input('dueDate');
-        $updateTask->taskDetails = $request->input('taskDetails');
+        $path = public_path() . '/assets/' . $updateTask->supervisorAttachment;
+
         $updateTask->comment = $request->input('comment');
+        $updateTask->supervisorAttachment = $request->file('supervisorAttachment');
+
+        // to rename the proposal file
+        $filename = time() . '.' . $updateTask->supervisorAttachment->getClientOriginalExtension();
+        // to store the new file by moving to assets folder
+        $request->supervisorAttachment->move('assets', $filename);
+
+        $updateTask->supervisorAttachment = $filename;
 
         $updateTask->update();
 

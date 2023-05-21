@@ -10,7 +10,74 @@ class ReportController extends Controller
 {
     public function loadReport()
     {
-        return view('reporting.projectreport'); 
+        $id = Auth::user()->id;
+
+        $countTask = DB::table('task')
+                    ->where('superviseeID', $id)
+                    ->count();
+        //status//
+        $countOntrack = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'On Track')
+                        ->first();
+        
+        $countOfftrack = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'Off Track')
+                        ->first();
+        
+        $countRisk = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'Risk')
+                        ->first();
+
+        //priority//
+        $countHigh = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'High')
+                        ->first();
+
+        $countMedium = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'Medium')
+                        ->first();
+
+        $countLow = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'Low')
+                        ->first();
+
+        //taskCompletion//
+        $countComplete = DB::table('task')
+                        ->select('progress', DB::raw('count(*) as count'))
+                        ->groupBy('progress')
+                        ->where('superviseeID', $id)
+                        ->where('progress', 'Done')
+                        ->first();
+
+        $countIncomplete = DB::table('task')
+                        ->select(DB::raw('COUNT(*) as count'))
+                        ->where('superviseeID', $id)
+                        ->where(function ($query) 
+                        {
+                            $query  ->where('progress', 'To Do')
+                                    ->orWhere('progress', 'Doing');
+                        })
+                        ->first();
+
+        return view('reporting.projectreport', compact('countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete')); 
     }
 
     //supervisor//
@@ -115,8 +182,74 @@ class ReportController extends Controller
         $studData = DB::table('users')
                 ->where('id', $id)
                 ->first();
+        
+        $countTask = DB::table('task')
+                    ->where('superviseeID', $id)
+                    ->count();
 
-        return view('reporting.projectreport', compact('studData')); 
+        //status//
+        $countOntrack = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'On Track')
+                        ->first();
+        
+        $countOfftrack = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'Off Track')
+                        ->first();
+        
+        $countRisk = DB::table('task')
+                        ->select('status', DB::raw('count(*) as count'))
+                        ->groupBy('status')
+                        ->where('superviseeID', $id)
+                        ->where('status', 'Risk')
+                        ->first();
+
+        //priority//
+        $countHigh = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'High')
+                        ->first();
+
+        $countMedium = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'Medium')
+                        ->first();
+
+        $countLow = DB::table('task')
+                        ->select('priority', DB::raw('count(*) as count'))
+                        ->groupBy('priority')
+                        ->where('superviseeID', $id)
+                        ->where('priority', 'Low')
+                        ->first();
+
+        //taskCompletion//
+        $countComplete = DB::table('task')
+                        ->select('progress', DB::raw('count(*) as count'))
+                        ->groupBy('progress')
+                        ->where('superviseeID', $id)
+                        ->where('progress', 'Done')
+                        ->first();
+
+        $countIncomplete = DB::table('task')
+                        ->select(DB::raw('COUNT(*) as count'))
+                        ->where('superviseeID', $id)
+                        ->where(function ($query) 
+                        {
+                            $query  ->where('progress', 'To Do')
+                                    ->orWhere('progress', 'Doing');
+                        })
+                        ->first();
+
+        return view('reporting.superviseereport', compact('studData', 'countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete')); 
     }
 
 }

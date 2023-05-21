@@ -155,39 +155,45 @@
 
                     @if( auth()->user()->category== "Admin")
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Quota</span>
+                        <a class="nav-link {{ request()->routeIs('quotaSupervisor*') ? 'active' : '' }}" href="{{ route('quotaSupervisor') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">groups</i>
+                            <span>Supervisor Quota</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Supervisor Application</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">assignment</i>
+                            <span>Supervisor Application</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Appointment Meeting</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">import_contacts</i>
+                            <span>Logbook</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Logbook</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">cloud_upload</i>
+                            <span>Submission</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Reporting</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">pie_chart</i>
+                            <span>Reporting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                            <i class="material-icons">work</i>
-                            <span>Evaluation</span>
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">streetview</i>
+                            <span>Evaluation</span></b>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                            <b><i class="material-icons" style="color: black">library_books</i>
+                            <span>FYP Library</span></b>
                         </a>
                     </li>
                     @endif

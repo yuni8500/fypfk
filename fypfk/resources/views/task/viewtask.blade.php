@@ -79,9 +79,34 @@
                                 <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="attachment" id="attachment" accept="application/pdf" onchange="loadFile(this)">
                                 <!-- to preview the file from the input type in div -->
                                 <!--<div id="dvPreview" style="width: 455px; height: 405px; border-style: dashed"></div> -->
+                                @if($fileexist)
+                                
+                                @elseif(! $fileexist)
                                 <div>
                                     <iframe src="/assets/{{$data->attachment}}" width="500" height="400"></iframe>
                                 </div>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; color: black"><label>Comment</label></td>
+                            <td colspan="3">
+                                <textarea class="form-control" name="comment" id="comment" rows="4" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" readonly>{{$data->comment}}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; color: black"><label>Supervisor Attachment</label></td>
+                            <td colspan="3">
+                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorAttachment" id="supervisorAttachment" accept="application/pdf" onchange="loadFile(this)" readonly>
+                                <!-- to preview the file from the input type in div -->
+                                <!--<div id="dvPreview" style="width: 455px; height: 405px; border-style: dashed"></div> -->
+                                @if($superviseefileexist)
+                                
+                                @elseif(! $superviseefileexist)
+                                <div>
+                                    <iframe src="/assets/{{$data->supervisorAttachment}}" width="500" height="400"></iframe>
+                                </div>
+                                @endif
                             </td>
                         </tr>
                         <tr>

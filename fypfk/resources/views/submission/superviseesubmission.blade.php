@@ -46,9 +46,11 @@
                         <td><label>No graded</label></td>
                         <td>
                             <center>
-                                <a class="btn" href="{{ route('submission') }}" style="border-radius: 10px; border: none; width: 100px; color: black; background-color: #86B5B3; font-size: 15px">
+                            @foreach($superviseedata as $data)
+                                <a class="btn" href="{{ route('submissionGraded', $data->userID) }}" style="border-radius: 10px; border: none; width: 100px; color: black; background-color: #86B5B3; font-size: 15px">
                                     <b>GRADED</b>
                                 </a>
+                            @endforeach
                             </center>
                         </td>
                     </tr>
@@ -63,7 +65,7 @@
                     <tr>
                         <th style="background-color: #145956; color: white"><center>File Submissions</center></th>
                         <td colspan="2">
-                            <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" multiple>
+                            <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" readonly>
                         </td>
                     </tr>
                     <tr>

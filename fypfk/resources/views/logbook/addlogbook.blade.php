@@ -20,31 +20,20 @@
                     @csrf
                     <tbody>
                         <tr>
-                            <td><label>Week</label></td>
-                            <td>
-                                <input type="number" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="week" id="week" value="" required>
-                            </td>
                             <td><label>Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="dateLog" id="dateLog" value="" required>
+                                <select name="date" id="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                    <option value="">Please select date</option>
+                                    @foreach($appointmentData as $appointdata)
+                                        <option value="{{$appointdata->id}}">{{$appointdata->appointDate}}</option>
+                                    @endforeach
+                                </select>
                             </td>
-                        </tr>
-                        <tr>
-                            <td><label>Time Start</label></td>
-                            <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tStart" id="tStart" value="" required>
-                            </td>
-                            <td><label>Time End</label></td>
-                            <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 70%;" class="form-control" name="tEnd" id="tEnd" value="" required>
-                            </td>
-                        </tr>
-                        <tr>
                             <td><label>Supervisor Name</label></td>
                             <td colspan="3">
                                 @foreach($getdata as $key=>$data)
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 50%;" class="form-control" name="supervisorName" id="supervisorName" value="{{$data->name}}" readonly>
-                                <input type="hidden" style="background-color: #86B5B3; border-radius: 10px; width: 50%;" class="form-control" name="supervisorID" id="supervisorID" value="{{$data->supervisorID}}" readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorName" id="supervisorName" value="{{$data->name}}" readonly>
+                                <input type="hidden" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorID" id="supervisorID" value="{{$data->supervisorID}}" readonly>
                                 @endforeach
                             </td>
                         </tr>
