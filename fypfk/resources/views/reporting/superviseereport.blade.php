@@ -6,7 +6,7 @@
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>PROJECT REPORT - {{$studData->name}}</b></h3>
 
-
+@if( auth()->user()->category== "Staff")
 <div class="overflow-auto" style="overflow:auto;">
     <div class="table-responsive">
         <table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -64,7 +64,70 @@
         </table>
     </div>
 </div>
-
+@endif
+@if( auth()->user()->category== "Admin")
+<a href="{{ route('reportingAdmin') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+<br><br>
+<div class="overflow-auto" style="overflow:auto;">
+    <div class="table-responsive">
+        <table class="table" id="dataTable" width="100%" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="card">
+                            <div class="card-body">
+                                <center>
+                                    <h5 style="color: black"><b>Total Task</b></h5>
+                                    <label style="font-size: 50px">{{ $countTask }}</label>
+                                </center>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card">
+                            <div class="card-body">
+                                <center>
+                                    <h5 style="color: black"><b>Total Project Submission</b></h5>
+                                    <label style="font-size: 50px">0</label>
+                                </center>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="totalstatus" style="width: 900px; height: 300px;"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="totalpriority" style="width: 900px; height: 300px;"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="taskComplete" style="width: 900px; height: 300px;"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
 <br>
 
 @endsection

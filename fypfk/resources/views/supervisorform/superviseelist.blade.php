@@ -17,7 +17,7 @@
             ],
             "language": {
                 search: '<i class="fa fa-search" aria-hidden="true"></i>',
-                searchPlaceholder: 'Search session'
+                searchPlaceholder: 'Search semester'
             }
         });
 
@@ -31,12 +31,6 @@
     });
 </script>
 
-<!-- to display the alert message if the record has been deleted -->
-@if(session()->has('message'))
-<div class="alert alert-success">
-    {{ session()->get('message') }}
-</div>
-@endif
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>LIST OF SUPERVISEE</b></h3>
 
 <a href="{{ route('applicationList') }}" style="color: black">
@@ -44,7 +38,28 @@
 </a>
 <br><br>
 <div class="card">
-
+    <div class="card-header pb-0">
+        <div class="row">
+            <div class="col-lg-16 col-md-12 col-sm-12">
+                <nav class="">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist" style="color: black">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('superviseeList') ? 'active' : '' }}" href="{{ route('superviseeList') }}" role="tab" aria-selected="true">PTA 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('superviseeListPta2') ? '' : '' }}" href="{{ route('superviseeListPta2') }}" role="tab" aria-selected="true">PTA 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('superviseeListPsm1') ? '' : '' }}" href="{{ route('superviseeListPsm1') }}" role="tab" aria-selected="true">PSM 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('superviseeListPsm2') ? '' : '' }}" href="{{ route('superviseeListPsm2') }}" role="tab" aria-selected="true">PSM 2</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
     <div class="card-body">
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
@@ -62,6 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($pta1Exist)
                         @foreach($superviseeList as $key=>$superviseedata)
                         <tr>
                             <td><center>{{$superviseedata->name}}</center></td>
@@ -73,16 +89,21 @@
                             <td><center>{{$superviseedata->semester}}</center></td>
                         </tr>
                         @endforeach
+                        @elseif(! $pta1Exist)
+                        <tr>
+                            <th colspan="7">
+                                <center>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee Data <i class="material-icons" style="color: red">priority_high</i></h5>
+                                </center>
+                            </th>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
-                <!-- FOR STAFF TO VIEW RECORD APPOINTNMENT LIST END -->
             </div>
         </div>
     </div>
 </div>
 <br>
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
-<Script>
-
-</script>
 @endsection

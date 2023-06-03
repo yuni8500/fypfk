@@ -51,9 +51,7 @@
                             <th><center>EXPERT GROUP</center></th>
                             <th><center>SEMESTER</center></th>
                             <th><center>PROJECT TITLE</center></th>
-                            <th><center>BACKGROUND PROBLEM</center></th>
-                            <th><center>OBJECTIVE</center></th>
-                            <th><center>SCOPE</center></th>
+                            <th><center>ABSTRACT</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,10 +61,8 @@
                             <td>{{$libdata->supervisorName}}</td>
                             <td>{{$libdata->course_group}}</td>
                             <td>{{$libdata->semester}}</td>
-                            <td>{{$libdata->proposedTitle}}</td>
-                            <td>{{$libdata->problemStatement}}</td>
-                            <td>{{$libdata->objective}}</td>
-                            <td>{{$libdata->scope}}</td>
+                            <td>{{$libdata->projectTitle}}</td>
+                            <td>{{$libdata->abstract}}</td>
                         </tr>
                         @endforeach
                     </tbody>

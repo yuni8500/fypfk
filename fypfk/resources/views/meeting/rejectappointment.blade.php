@@ -35,7 +35,7 @@
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>SUBMIT</b>
                                     </button>
-                                    <a class="btn btn-danger" href="{{ route('appointment') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
+                                    <a class="btn btn-danger" href="{{ route('approvalMeeting') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>CANCEL</b>
                                     </a>
                                 </center>

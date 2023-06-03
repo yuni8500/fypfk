@@ -6,6 +6,8 @@
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>LOGBOOK</b></h3>
 
+<!-- Staff -->
+@if( auth()->user()->category== "Staff")
 <a href="{{ route('logbookSupervisee') }}" style="color: black">
     <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
 </a>
@@ -60,6 +62,53 @@
         </div>
     </div>
 </div>
+@endif
+
+<!--admin-->
+@if( auth()->user()->category== "Admin")
+<a href="{{ route('logbookSupervisee') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+<br><br>
+
+<div class="card">
+    
+    <div class="card-body">
+        <div class="overflow-auto" style="overflow:auto;">
+            <div class="table-responsive">
+                <center><h5 style="color: black">{{$studentName->name}}</h5></center>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead style="background-color: #86B5B3; color: black;">
+                        <tr>
+                            <th rowspan="2"><center>DATE</center></th>
+                            <th colspan="2"><center>TIME</center></th>
+                            <th rowspan="2"><center>PROGRESS</center></th>
+                            <th rowspan="2"><center>SUPERVISOR COMMENT</center></th>
+                            <th rowspan="2"><center>APPROVAL</center></th>
+                        </tr>
+                        <tr>
+                            <th><center>START</center></th>
+                            <th><center>END</center></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($superviseeLogbookAdmin as $data)
+                        <tr>
+                            <td><label>{{$data->appointDate}}</label></td>
+                            <td><label>{{$data->startTime}}</label></td>
+                            <td><label>{{$data->endTime}}</label></td>
+                            <td><label>{{$data->progress}}</label></td>
+                            <td><label>{{$data->comment}}</label></td>
+                            <td><label>{{$data->approval}}</label></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <br>
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
 <Script>

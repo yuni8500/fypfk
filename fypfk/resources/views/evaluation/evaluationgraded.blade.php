@@ -16,33 +16,45 @@
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <form method="post" action="">
+                <form method="post" action="{{ route('insertEvaluationGraded', $evaluationinfo->evaluationID) }}" enctype="multipart/form-data">
                     @csrf
                     <tbody>
                         <tr>
                             <td><label>Evaluatee Name</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="name" id="name" value="" required readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="name" id="name" value="{{$evaluationinfo->superviseeName}}" required readonly>
+                                <input type="hidden" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="studID" id="studID" value="{{$evaluationinfo->superviseeID}}" required readonly>
                             </td>
                             <td><label>Evaluatee Student ID</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="matric" id="matric" value="" required readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="matric" id="matric" value="{{$evaluationinfo->superviseeMatric}}" required readonly>
                             </td>
                         </tr>
                         <tr>
                             <td><label>Evaluatee Course</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="course" id="course" value="" required readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="course" id="course" value="{{$evaluationinfo->superviseeCourse}}" required readonly>
                             </td>
                             <td><label>Evaluation Date</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluationDate" id="evaluationDate" value="" required readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluationDate" id="evaluationDate" value="{{$evaluationinfo->dateEvaluate}}" required readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Evaluatee Supervisor Name</label></td>
+                            <td>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorName" id="supervisorName" value="{{$evaluationinfo->supervisorName}}" required readonly>
+                                <input type="hidden" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="staffID" id="staffID" value="{{$evaluationinfo->supervisorID}}" required readonly>
+                            </td>
+                            <td><label>Evaluator Name</label></td>
+                            <td>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluatorName" id="evaluatorName" value="{{$name}}" required readonly>
                             </td>
                         </tr>
                         <tr>
                             <td><label>Evaluation File</label></td>
                             <td colspan="3">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="fileEvaluate" id="fileEvaluate" value="" required>
+                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="fileEvaluate" id="fileEvaluate" accept="application/pdf" onchange="loadFile(this)">
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +66,7 @@
                         <tr>
                             <td><label>Comment</label></td>
                             <td colspan="3">
-                                <textarea class="form-control" name="comment" id="comment" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                                <textarea class="form-control" name="comment" id="comment" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +90,29 @@
 </div>
 <br>
 <script src="{{ asset('frontend') }}/js/jquery.dataTables.js"></script>
-<Script>
 
-</script>
 @endsection
+
+<!-- to preview the chosen file from computer -->
+<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#fileEvaluate").change(function() {
+            $("#dvPreview").html("");
+
+            $("#dvPreview").show();
+            $("#dvPreview").append("<iframe />");
+            $("iframe").css({
+                "height": "400px",
+                "width": "450px"
+            });
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#dvPreview iframe").attr("src", e.target.result);
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        });
+    });
+</script>

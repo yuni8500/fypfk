@@ -13,12 +13,17 @@ class FyplibraryController extends Controller
         $libdata = DB::table('supervisorapply')
                 ->join('users as supervisee', 'supervisorapply.superviseeID', '=', 'supervisee.id')
                 ->join('users as supervisor', 'supervisorapply.supervisorID', '=', 'supervisor.id')
+                ->join('fyplibrary', 'supervisee.id', '=', 'supervisorapply.superviseeID')
                 ->select([
-                    'supervisorapply.id AS applyID', 'supervisee.*', 'supervisor.*', 'supervisorapply.*', 'supervisee.name as superviseeName', 'supervisor.name as supervisorName'
+                    'fyplibrary.id AS fyplibraryID',
+                    'supervisorapply.id AS applyID', 'supervisee.*', 'supervisor.*', 'supervisorapply.*', 'fyplibrary.*', 'supervisee.name as superviseeName', 'supervisor.name as supervisorName'
                 ])
-                ->where('supervisorapply.statusApplied', 'Approved')
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('fyplibrary')
+                        ->whereColumn('fyplibrary.superviseeID', 'supervisorapply.superviseeID');
+                })
                 ->get();
-
 
         return view('fyplibrary.listfyp', compact('libdata')); 
     }

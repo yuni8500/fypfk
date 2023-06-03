@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('appointment*') ? 'active' : '' }}" href="{{ route('appointment') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('appointmentSupervisee*') ? 'active' : '' }}" href="{{ route('appointmentSupervisee') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">event</i>
                             <span>Appointment Meeting</span></b>
                         </a>
@@ -110,7 +110,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('appointment*') ? 'active' : '' }}" href="{{ route('appointment') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('appointmentSupervisee*') ? 'active' : '' }}" href="{{ route('appointmentSupervisee') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">event</i>
                             <span>Appointment Meeting</span></b>
                         </a>
@@ -161,37 +161,37 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('supervisorApplicationAdmin*') ? 'active' : '' }}" href="{{ route('supervisorApplicationAdmin') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">assignment</i>
                             <span>Supervisor Application</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('logbookAdmin*') ? 'active' : '' }}" href="{{ route('logbookAdmin') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">import_contacts</i>
                             <span>Logbook</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('submission*') ? 'active' : '' }}" href="{{ route('submission') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">cloud_upload</i>
                             <span>Submission</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('reportingAdmin*') ? 'active' : '' }}" href="{{ route('reportingAdmin') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">pie_chart</i>
                             <span>Reporting</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('evaluationAdmin*') ? 'active' : '' }}" href="{{ route('evaluationAdmin') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">streetview</i>
                             <span>Evaluation</span></b>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('fypLibrary*') ? 'active' : '' }}" href="{{ route('fypLibrary') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">library_books</i>
                             <span>FYP Library</span></b>
                         </a>

@@ -22,6 +22,10 @@
                         <tr>
                             <th><center><b>SUPERVISOR NAME</b></center></th>
                             <th><center><b>PROPOSED TITLE</b></center></th>
+                            <th><center><b>SEMESTER</b></center></th>
+                            <th><center><b>BACKGROUND PROBLEM</b></center></th>
+                            <th><center><b>OBJECTIVE</b></center></th>
+                            <th><center><b>SCOPE</b></center></th>
                             <th><center><b>STATUS APPLICATION</b></center></th>
                         </tr>
                     </thead>
@@ -30,6 +34,10 @@
                         <tr>
                             <td><center><label>{{$data->name}}</label></center></td>
                             <td><center><label>{{$data->proposedTitle}}</label></center></td>
+                            <td><center><label>{{$data->semester}}</label></center></td>
+                            <td><label>{{$data->problemStatement}}</label></td>
+                            <td><label>{{$data->objective}}</label></td>
+                            <td><label>{{$data->scope}}</label></td>
                             <td><center><label>{{$data->statusApplied}}</label></center></td>
                         </tr>
                         @endforeach
