@@ -10,7 +10,7 @@
                 <nav class="navbar align-items-stretch navbar-light flex-md-nowrap border-bottom p-0" style="background-color: #145956">
                     <a class="navbar-brand w-100 mr-0" href="{{ route('dashboard') }}" style="line-height: 40px; color: white">
                         <div class="d-table m-auto">
-                            <img id="main-logo" class="d-inline-block align-center mr-1" style="max-width: 40px;" src="{{ asset('frontend') }}/images/logodashboard.png" alt="logo FYPFK">
+                            <img id="main-logo" class="d-inline-block align-center mr-1" style="max-width: 40px;" src="{{ asset('frontend') }}/images/realLogo1.png" alt="logo FYPFK">
                             <span class="d-none d-md-inline ml-1"> {{ config('app.name', 'Final Year Project Management System for Faculty of Computing') }}</span>
                         </div>
                     </a>

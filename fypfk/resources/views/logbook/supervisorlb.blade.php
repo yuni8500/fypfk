@@ -40,15 +40,15 @@
                             <td><label>{{$data->comment}}</label></td>
                             <td><label>{{$data->approval}}</label></td>
                             <td>
-                            @if($logbookUpdate)
-                                <center>
-                                    <a class="btn btn-primary" href="{{ route('logbookEdit', $data->logbookID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>UPDATE</b>
-                                    </a>
-                                </center>
-                            @elseif(! $logbookUpdate)
-                            <label>Complete</label>
-                            @endif
+                                @if($data->approval === 'In Progress')
+                                    <center>
+                                        <a class="btn btn-primary" href="{{ route('logbookEdit', $data->logbookID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>UPDATE</b>
+                                        </a>
+                                    </center>
+                                @else
+                                    <label>Complete</label>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

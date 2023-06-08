@@ -250,7 +250,7 @@ class appointmentController extends Controller
             $deleteAppointment->delete();
         }
 
-        return redirect()->route('appointment');
+        return redirect()->route('appointmentSupervisee');
 
     }
 

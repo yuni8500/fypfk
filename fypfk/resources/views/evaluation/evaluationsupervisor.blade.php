@@ -6,8 +6,10 @@
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>EVALUATION INFORMATION</b></h3>
 <div class="card">
-    
     <div class="card-body">
+        <a class="btn btn-primary" href="{{ route('evaluationRecordPTA1') }}" style="border-radius: 10px; border: none; width: 28%; color: white; font-size: 15px; background-color: #145956; margin-left: 746px; margin-bottom:15px">
+            <i class="material-icons" style="color: white">pageview</i> <b>SUPERVISEE EVALUATION RECORD</b>
+        </a>
         <div class="overflow-auto" style="overflow:auto;">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -27,19 +29,25 @@
                     </thead>
                     <tbody>
                         @if($pta1exist)
-                        @foreach($pta1 as $data1)
+                        @foreach($pta1 as $pta1data)
                         <tr>
-                            <td><center><label>{{$data1->superviseeName}}</label></center></td>
-                            <td><center><label>{{$data1->superviseeMatric}}</label></center></td>
-                            <td><center><label>{{$data1->supervisorName}}</label></center></td>
-                            <td><center><label>{{$data1->dateEvaluate}}</label></center></td>
-                            <td><center><label>{{$data1->timeEvaluate}}</label></center></td>
-                            <td><center><label>{{$data1->location}}</label></center></td>
+                            <td><center><label>{{$pta1data->superviseeName}}</label></center></td>
+                            <td><center><label>{{$pta1data->superviseeMatric}}</label></center></td>
+                            <td><center><label>{{$pta1data->supervisorName}}</label></center></td>
+                            <td><center><label>{{$pta1data->dateEvaluate}}</label></center></td>
+                            <td><center><label>{{$pta1data->timeEvaluate}}</label></center></td>
+                            <td><center><label>{{$pta1data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $data1->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    @if ($gradeexist)
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                        <b>UPDATE</b>
+                                    </a>
+                                    @else
+                                    <a class="btn btn-primary" href="{{ route('superviseeEvaluation', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>GRADED</b>
                                     </a>
+                                    @endif
                                 </center>
                             </td>
                         </tr>
@@ -71,19 +79,25 @@
                     </thead>
                     <tbody>
                     @if($pta2exist)
-                        @foreach($pta2 as $data2)
+                        @foreach($pta2 as $pta2data)
                         <tr>
-                            <td><center><label>{{$data2->superviseeName}}</label></center></td>
-                            <td><center><label>{{$data2->superviseeMatric}}</label></center></td>
-                            <td><center><label>{{$data2->supervisorName}}</label></center></td>
-                            <td><center><label>{{$data2->dateEvaluate}}</label></center></td>
-                            <td><center><label>{{$data2->timeEvaluate}}</label></center></td>
-                            <td><center><label>{{$data2->location}}</label></center></td>
+                            <td><center><label>{{$pta2data->superviseeName}}</label></center></td>
+                            <td><center><label>{{$pta2data->superviseeMatric}}</label></center></td>
+                            <td><center><label>{{$pta2data->supervisorName}}</label></center></td>
+                            <td><center><label>{{$pta2data->dateEvaluate}}</label></center></td>
+                            <td><center><label>{{$pta2data->timeEvaluate}}</label></center></td>
+                            <td><center><label>{{$pta2data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $data2->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    @if ($gradeexist)
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                        <b>UPDATE</b>
+                                    </a>
+                                    @else
+                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>GRADED</b>
                                     </a>
+                                    @endif
                                 </center>
                             </td>
                         </tr>
@@ -115,19 +129,25 @@
                     </thead>
                     <tbody>
                     @if($psm1exist)
-                        @foreach($psm1 as $data3)
+                        @foreach($psm1 as $psm1data)
                         <tr>
-                            <td><center><label>{{$data3->superviseeName}}</label></center></td>
-                            <td><center><label>{{$data3->superviseeMatric}}</label></center></td>
-                            <td><center><label>{{$data3->supervisorName}}</label></center></td>
-                            <td><center><label>{{$data3->dateEvaluate}}</label></center></td>
-                            <td><center><label>{{$data3->timeEvaluate}}</label></center></td>
-                            <td><center><label>{{$data3->location}}</label></center></td>
+                            <td><center><label>{{$psm1data->superviseeName}}</label></center></td>
+                            <td><center><label>{{$psm1data->superviseeMatric}}</label></center></td>
+                            <td><center><label>{{$psm1data->supervisorName}}</label></center></td>
+                            <td><center><label>{{$psm1data->dateEvaluate}}</label></center></td>
+                            <td><center><label>{{$psm1data->timeEvaluate}}</label></center></td>
+                            <td><center><label>{{$psm1data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $data3->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    @if ($gradeexist)
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                        <b>UPDATE</b>
+                                    </a>
+                                    @else
+                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>GRADED</b>
                                     </a>
+                                    @endif
                                 </center>
                             </td>
                         </tr>
@@ -159,22 +179,22 @@
                     </thead>
                     <tbody>
                     @if($psm2exist)
-                        @foreach($psm2 as $data4)
+                        @foreach($psm2 as $psm2data)
                         <tr>
-                            <td><center><label>{{$data4->superviseeName}}</label></center></td>
-                            <td><center><label>{{$data4->superviseeMatric}}</label></center></td>
-                            <td><center><label>{{$data4->supervisorName}}</label></center></td>
-                            <td><center><label>{{$data4->dateEvaluate}}</label></center></td>
-                            <td><center><label>{{$data4->timeEvaluate}}</label></center></td>
-                            <td><center><label>{{$data4->location}}</label></center></td>
+                            <td><center><label>{{$psm2data->superviseeName}}</label></center></td>
+                            <td><center><label>{{$psm2data->superviseeMatric}}</label></center></td>
+                            <td><center><label>{{$psm2data->supervisorName}}</label></center></td>
+                            <td><center><label>{{$psm2data->dateEvaluate}}</label></center></td>
+                            <td><center><label>{{$psm2data->timeEvaluate}}</label></center></td>
+                            <td><center><label>{{$psm2data->location}}</label></center></td>
                             <td>
                                 <center>
                                     @if ($gradeexist)
-                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $data4->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>UPDATE</b>
                                     </a>
                                     @else
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $data4->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>GRADED</b>
                                     </a>
                                     @endif

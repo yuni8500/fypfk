@@ -332,19 +332,23 @@ class TaskController extends Controller
 
     public function updateTaskSupervisee(Request $request, $id) //updatelogbook in database
     {
-        $updateTask = task::find($id); //model name
+        $updateTask = Task::find($id); // Model name
 
         $path = public_path() . '/assets/' . $updateTask->supervisorAttachment;
 
         $updateTask->comment = $request->input('comment');
-        $updateTask->supervisorAttachment = $request->file('supervisorAttachment');
 
-        // to rename the proposal file
-        $filename = time() . '.' . $updateTask->supervisorAttachment->getClientOriginalExtension();
-        // to store the new file by moving to assets folder
-        $request->supervisorAttachment->move('assets', $filename);
+        if ($request->hasFile('supervisorAttachment')) 
+        {
+            $updateTask->supervisorAttachment = $request->file('supervisorAttachment');
 
-        $updateTask->supervisorAttachment = $filename;
+            // To rename the proposal file
+            $filename = time() . '.' . $updateTask->supervisorAttachment->getClientOriginalExtension();
+            // To store the new file by moving it to the assets folder
+            $request->supervisorAttachment->move('assets', $filename);
+
+            $updateTask->supervisorAttachment = $filename;
+        }
 
         $updateTask->update();
 

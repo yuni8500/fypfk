@@ -92,6 +92,8 @@ class SubmissionController extends Controller
 
             $userid = Auth::user()->id;
 
+            $course = $submissionData->course;
+
             $superviseedata = DB::table('supervisorapply')
                         ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
                         ->select([
@@ -100,6 +102,7 @@ class SubmissionController extends Controller
                             ])
                         ->where('supervisorapply.supervisorID', $userid)
                         ->where('supervisorapply.statusApplied', 'Approved')
+                        ->where('users.course_group', $course)
                         ->get();
 
             return view('submission.displaysubmit', compact('superviseedata', 'submissionData'));
@@ -229,32 +232,159 @@ class SubmissionController extends Controller
     }
 
     //supervisor//
-    public function viewSuperviseeSubmission()
+    public function viewSuperviseeSubmission(Request $request, $id)
     {
-        $id = Auth::user()->id;
+        $userid = Auth::user()->id;
         
+        $submissionData = DB::table('submission')
+                        ->where('id', $id)
+                        ->first();
+
+        $course = $submissionData->course;
+
         $superviseedata = DB::table('supervisorapply')
                         ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
                         ->select([
                             'users.id AS userID',
                             'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
                             ])
-                        ->where('supervisorapply.supervisorID', $id)
+                        ->where('supervisorapply.supervisorID', $userid)
                         ->where('supervisorapply.statusApplied', 'Approved')
+                        ->where('users.course_group', $course)
                         ->get();
 
-        return view('submission.superviseesubmission', compact('superviseedata')); 
+        $studentID = $request->input('superviseeName');
+
+        $student = DB::table('superviseesubmission')
+                    ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                    ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                    ->select([
+                        'users.id AS userID',
+                        'submission.id AS submissionID',
+                        'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*'
+                    ])
+                    ->where('superviseesubmission.superviseeID', $studentID)
+                    ->where('superviseesubmission.submissionID', $id)
+                    ->get();
+                        
+        $studentexist = DB::table('superviseesubmission')
+                        ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                        ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                        ->select([
+                            'users.id AS userID',
+                            'submission.id AS submissionID',
+                            'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*'
+                        ])
+                        ->where('superviseesubmission.superviseeID', $studentID)
+                        ->where('superviseesubmission.submissionID', $id)
+                        ->exists();
+
+        $fileexist = DB::table('superviseesubmission')
+                        ->where('submissionID', $id)
+                        ->where('superviseeID', $studentID)
+                        ->where('docSubmission', null)
+                        ->exists();
+
+        $gradedexist = DB::table('superviseesubmission')
+                        ->where('submissionID', $id)
+                        ->where('superviseeID', $studentID)
+                        ->where('marks', null)
+                        ->exists();
+
+        //fyplibrary//
+        $studentdata = DB::table('users')
+            ->where('id', $studentID)
+            ->first();
+
+        $submission = DB::table('fyplibrary')
+                        ->join('users', 'users.id', '=', 'fyplibrary.superviseeID')
+                        ->join('submission', 'submission.id', '=', 'fyplibrary.submissionID')
+                        ->select([
+                            'users.id AS userID',
+                            'submission.id AS submissionID',
+                            'fyplibrary.id AS fyplibraryID', 'users.*', 'submission.*', 'fyplibrary.*'
+                        ])
+                        ->where('fyplibrary.superviseeID', $studentID)
+                        ->where('fyplibrary.submissionID', $id)
+                        ->get();
+
+            $submissionexist = DB::table('fyplibrary')
+                                ->join('users', 'users.id', '=', 'fyplibrary.superviseeID')
+                                ->join('submission', 'submission.id', '=', 'fyplibrary.submissionID')
+                                ->select([
+                                    'users.id AS userID',
+                                    'submission.id AS submissionID',
+                                    'fyplibrary.id AS fyplibraryID', 'users.*', 'submission.*', 'fyplibrary.*'
+                                ])
+                                ->where('fyplibrary.superviseeID', $studentID)
+                                ->where('fyplibrary.submissionID', $id)
+                                ->exists();
+        
+            $filefypexist = DB::table('fyplibrary')
+                        ->where('submissionID', $id)
+                        ->where('superviseeID', $studentID)
+                        ->where('fileProject', null)
+                        ->exists();
+
+        return view('submission.superviseesubmission', compact('superviseedata', 'submissionData', 'student', 'studentexist', 'fileexist', 'gradedexist', 'studentdata', 'submission', 'submissionexist', 'filefypexist')); 
     }
 
-    public function submissionGraded($id)
+    public function submissionGraded($userID, $submissionID)
     {
-        $superviseeInfo = DB::table('users')
-                            ->where('id', $id)
-                            ->first();
+        $submissionData = DB::table('submission')
+                        ->where('id', $submissionID)
+                        ->first();
 
+        $student = DB::table('superviseesubmission')
+                    ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                    ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                    ->select([
+                        'users.id AS userID',
+                        'submission.id AS submissionID',
+                        'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*'
+                    ])
+                    ->where('superviseesubmission.superviseeID', $userID)
+                    ->where('superviseesubmission.submissionID', $submissionID)
+                    ->first();
 
-        return view('submission.submissiongrade', compact('superviseeInfo')); 
+        return view('submission.submissiongrade', compact('submissionData', 'student')); 
     }
+
+    public function updateGradedSubmission(Request $request, $id)
+    {
+        $supervisorid = Auth::user()->id;
+
+        $updateSubmission = SuperviseeSubmission::find($id);
+
+        $updateSubmission->supervisorID = $supervisorid;
+        $updateSubmission->marks = $request->input('marks'); //blue from name input value
+
+        $updateSubmission->update();
+
+        return redirect()->back()->with('message', 'Submission Graded Record Successfully');
+    }
+
+    public function editGradedSubmission($userID, $submissionID)
+    {
+        $submissionData = DB::table('submission')
+                        ->where('id', $submissionID)
+                        ->first();
+
+        $student = DB::table('superviseesubmission')
+                    ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                    ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                    ->select([
+                        'users.id AS userID',
+                        'submission.id AS submissionID',
+                        'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*'
+                    ])
+                    ->where('superviseesubmission.superviseeID', $userID)
+                    ->where('superviseesubmission.submissionID', $submissionID)
+                    ->first();
+
+        return view('submission.updatesubmissiongrade', compact('submissionData', 'student')); 
+    }
+
 
     //admin//
     public function createSubmission()
@@ -365,18 +495,85 @@ class SubmissionController extends Controller
             ->where('id', $submissionID)
             ->first();
 
-            $student = DB::table('superviseesubmission')
-            ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
-            ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
-            ->select([
-                'users.id AS userID',
-                'submission.id AS submissionID',
-                'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*'
-            ])
-            ->where('superviseesubmission.superviseeID', $userID)
-            ->where('superviseesubmission.submissionID', $submissionID)
+            $studentdata = DB::table('users')
+            ->where('id', $userID)
             ->first();
 
-            return view('submission.studentsubmission', compact('student', 'submissionData'));
+            $student = DB::table('superviseesubmission')
+                    ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                    ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                    ->select([
+                        'users.id AS userID',
+                        'submission.id AS submissionID',
+                        'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*',
+                        'superviseesubmission.docSubmission'
+                    ])
+                    ->where('superviseesubmission.superviseeID', $userID)
+                    ->where('superviseesubmission.submissionID', $submissionID)
+                    ->get();
+
+            $studentexist = DB::table('superviseesubmission')
+                            ->join('users', 'users.id', '=', 'superviseesubmission.superviseeID')
+                            ->join('submission', 'submission.id', '=', 'superviseesubmission.submissionID')
+                            ->select([
+                                'users.id AS userID',
+                                'submission.id AS submissionID',
+                                'superviseesubmission.id AS superviseesubmissionID', 'users.*', 'submission.*', 'superviseesubmission.*',
+                                'superviseesubmission.docSubmission'
+                            ])
+                            ->where('superviseesubmission.superviseeID', $userID)
+                            ->where('superviseesubmission.submissionID', $submissionID)
+                            ->exists();
+
+            $fileexist = DB::table('superviseesubmission')
+                        ->where('submissionID', $submissionID)
+                        ->where('superviseeID', $userID)
+                        ->where('docSubmission', null)
+                        ->exists();
+                
+            return view('submission.studentsubmission', compact('student', 'studentdata', 'submissionData', 'studentexist', 'fileexist'));
+        }
+
+        public function viewFinalSubmissionStudent($userID, $submissionID)
+        {
+            $submissionData = DB::table('submission')
+            ->where('id', $submissionID)
+            ->first();
+
+            $studentdata = DB::table('users')
+            ->where('id', $userID)
+            ->first();
+
+            $submission = DB::table('fyplibrary')
+                        ->join('users', 'users.id', '=', 'fyplibrary.superviseeID')
+                        ->join('submission', 'submission.id', '=', 'fyplibrary.submissionID')
+                        ->select([
+                            'users.id AS userID',
+                            'submission.id AS submissionID',
+                            'fyplibrary.id AS fyplibraryID', 'users.*', 'submission.*', 'fyplibrary.*'
+                        ])
+                        ->where('fyplibrary.superviseeID', $userID)
+                        ->where('fyplibrary.submissionID', $submissionID)
+                        ->get();
+
+            $submissionexist = DB::table('fyplibrary')
+                                ->join('users', 'users.id', '=', 'fyplibrary.superviseeID')
+                                ->join('submission', 'submission.id', '=', 'fyplibrary.submissionID')
+                                ->select([
+                                    'users.id AS userID',
+                                    'submission.id AS submissionID',
+                                    'fyplibrary.id AS fyplibraryID', 'users.*', 'submission.*', 'fyplibrary.*'
+                                ])
+                                ->where('fyplibrary.superviseeID', $userID)
+                                ->where('fyplibrary.submissionID', $submissionID)
+                                ->exists();
+        
+            $fileexist = DB::table('fyplibrary')
+                        ->where('submissionID', $submissionID)
+                        ->where('superviseeID', $userID)
+                        ->where('fileProject', null)
+                        ->exists();
+                
+            return view('submission.finalsubmissionadmin', compact('submissionData', 'studentdata', 'submission', 'submissionexist', 'fileexist'));
         }
 }

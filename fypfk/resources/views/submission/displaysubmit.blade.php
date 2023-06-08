@@ -96,10 +96,8 @@
                         <tr>
                             <th style="background-color: #145956; color: white"><center>File Submissions</center></th>
                             <td>
-                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" accept="application/pdf" onchange="loadFile(this)">
-                                
                                 @if($fileexist)
-                                
+                                    <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" accept="application/pdf" onchange="loadFile(this)">
                                 @elseif(! $fileexist)
                                 <div>
                                     <iframe src="/assets/{{$data->docSubmission}}" width="500" height="400"></iframe>
@@ -110,12 +108,15 @@
                         <tr>
                             <td colspan="2">
                                 <center>
+                                @if($data->marks === null)
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>UPDATE</b>
                                     </button>
+                                @else
                                     <a class="btn btn-danger" href="{{ route('submission') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>CANCEL</b>
                                     </a>
+                                @endif
                                 </center>
                             </td>
                         </tr>
@@ -136,6 +137,8 @@
 </a>
 <br><br>
 <table>
+    <form action="{{ route('viewSuperviseeSubmission', $submissionData->id) }}" method="POST">
+    @csrf
     <tr>
         <td>
             <select name="superviseeName" id="superviseeName" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
@@ -146,11 +149,12 @@
             </select>
         </td>
         <td>
-            <a class="btn" href="{{ route('viewSuperviseeSubmission') }}" style="border-radius: 10px; border: none; width: 85px; color: white; background-color: #145956; font-size: 15px">
+            <button class="btn" style="border-radius: 10px; border: none; width: 85px; color: white; background-color: #145956; font-size: 15px">
                 <b>SUBMIT</b>
-            </a>
+            </button>
         </td>
     </tr>
+</form>
 </table>
 @endif
 

@@ -72,7 +72,7 @@
 </div>
 @endif
 @if( auth()->user()->category== "Staff")
-<a href="{{ route('appointmentSupervisor') }}" style="color: black">
+<a href="{{ route('appointmentSupervisee') }}" style="color: black">
     <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
 </a>
 <br><br>

@@ -3,6 +3,10 @@
 @section('content')
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>EVALUATION INFORMATION</b></h3>
+<a href="{{ route('evaluationRecordPTA1') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+<br><br>
 <div class="card">
     
     <div class="card-body">
@@ -71,16 +75,36 @@
                         </td>
                     </tr>
                     @endforeach
+                    @foreach ($evaluateData as $evaluator => $datafile)
                     <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 1</center></th>
+                        <th style="background-color: #86B5B3; color: black;"><center>Evaluation File {{ $evaluator }}</center></th>
                         <td>
-                            {{ $evaluateMarks['Evaluator 1'] ?? 'No graded' }}
-                        </td>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 2</center></th>
-                        <td>
-                            {{ $evaluateMarks['Evaluator 2'] ?? 'No graded' }}
+                            <div>
+                                @if (!empty($datafile['file']))
+                                    <iframe src="/assets/{{ $datafile['file'] }}" width="400" height="300"></iframe>
+                                @else
+                                    No attached file
+                                @endif
+                            </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th style="background-color: #86B5B3; color: black;"><center>Comment {{ $evaluator }}</center></th>
+                        <td>
+                            {{ $datafile['comment'] ?? 'No comment' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #86B5B3; color: black;"><center>Marks {{ $evaluator }}</center></th>
+                        <td>
+                            @if (isset($datafile['marks']))
+                                {{ $datafile['marks'] }}
+                            @else
+                                No grade
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
                     <tr>
                         <th style="background-color: #86B5B3; color: black;"><center>Total Marks</center></th>
                         <td colspan="3">
@@ -98,3 +122,27 @@
 
 </script>
 @endsection
+
+<!-- to preview the chosen file from computer -->
+<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#fileEvaluate").change(function() {
+            $("#dvPreview").html("");
+
+            $("#dvPreview").show();
+            $("#dvPreview").append("<iframe />");
+            $("iframe").css({
+                "height": "400px",
+                "width": "450px"
+            });
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#dvPreview iframe").attr("src", e.target.result);
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        });
+    });
+</script>

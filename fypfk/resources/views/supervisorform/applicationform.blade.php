@@ -129,7 +129,7 @@
                         <tr>
                             <td style="text-align: center; color: black">
                                 <label>Objective</label> <br>
-                                <strong style="color: red">*Must have 3 objective and <br> numbering each objective*</strong>
+                                <strong style="color: red">*Must have 3 objectives and <br> numbering each objective*</strong>
                             </td>
                             <td>
                                 <textarea class="form-control" name="objective" id="objective" rows="3" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>

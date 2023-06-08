@@ -8,7 +8,7 @@
 </div>
 @endif
 
-<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>CREATE EVALUATION</b></h3>
+<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>VIEW EVALUATION</b></h3>
 
 <div class="card" style="margin: auto">
 
@@ -50,7 +50,7 @@
                                 <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator1" id="evaluator1" value="{{ $evaluationdata->evaluator1 }}" readonly>
                             </td>
                             <td colspan="2">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator1marks" id="evaluator1marks" value="{{ $evaluationdata->marks }}" readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator1marks" id="evaluator1marks" value="{{ $evaluateMarks['Evaluator 1'] ?? 'No graded' }}" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -59,7 +59,7 @@
                             <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator2" id="evaluator2" value="{{ $evaluationdata->evaluator2 }}" readonly>
                             </td>
                             <td colspan="2">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator2marks" id="evaluator2marks" value="{{ $evaluationdata->marks }}" readonly>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator2marks" id="evaluator2marks" value="{{ $evaluateMarks['Evaluator 2'] ?? 'No graded' }}" readonly>
                             </td>
                         </tr>
                         <tr>

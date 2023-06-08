@@ -11,10 +11,26 @@ class ReportController extends Controller
     public function loadReport()
     {
         $id = Auth::user()->id;
+        $course = Auth::user()->course_group;
 
         $countTask = DB::table('task')
                     ->where('superviseeID', $id)
                     ->count();
+        
+        $countSubmission = DB::table('superviseesubmission')
+                        ->where('superviseeID', $id)
+                        ->count();
+
+        $countfinalSubmission = DB::table('fyplibrary')
+                        ->where('superviseeID', $id)
+                        ->count();
+
+        $totalSubmit = $countSubmission + $countfinalSubmission;
+
+        $totalSubmission = DB::table('submission')
+                        ->where('course', $course)
+                        ->count();
+        
         //status//
         $countOntrack = DB::table('task')
                         ->select('status', DB::raw('count(*) as count'))
@@ -77,7 +93,7 @@ class ReportController extends Controller
                         })
                         ->first();
 
-        return view('reporting.projectreport', compact('countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete')); 
+        return view('reporting.projectreport', compact('countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete', 'totalSubmit', 'totalSubmission')); 
     }
 
     //supervisor//
@@ -182,10 +198,26 @@ class ReportController extends Controller
         $studData = DB::table('users')
                 ->where('id', $id)
                 ->first();
+
+        $course = $studData->course_group;
         
         $countTask = DB::table('task')
                     ->where('superviseeID', $id)
                     ->count();
+
+        $countSubmission = DB::table('superviseesubmission')
+                        ->where('superviseeID', $id)
+                        ->count();
+
+        $countfinalSubmission = DB::table('fyplibrary')
+                        ->where('superviseeID', $id)
+                        ->count();
+
+        $totalSubmit = $countSubmission + $countfinalSubmission;
+
+        $totalSubmission = DB::table('submission')
+                        ->where('course', $course)
+                        ->count();
 
         //status//
         $countOntrack = DB::table('task')
@@ -249,7 +281,7 @@ class ReportController extends Controller
                         })
                         ->first();
 
-        return view('reporting.superviseereport', compact('studData', 'countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete')); 
+        return view('reporting.superviseereport', compact('studData', 'countTask', 'countOntrack', 'countOfftrack', 'countRisk', 'countHigh', 'countMedium', 'countLow', 'countComplete', 'countIncomplete', 'totalSubmit', 'totalSubmission')); 
     }
 
     //admin//
@@ -258,17 +290,8 @@ class ReportController extends Controller
         $staff = DB::table('users')
                 ->where('category', 'Staff')
                 ->get();
-
-        $pta1 = false;
-        $pta2 = false;
-        $psm1 = false;
-        $psm2 = false;
-        $pta1exist = false;
-        $pta2exist = false;
-        $psm1exist = false;
-        $psm2exist = false;
     
-        return view('reporting.adminreport', compact('staff', 'pta1', 'pta2', 'psm1', 'psm2', 'pta1exist', 'pta2exist', 'psm1exist', 'psm2exist')); 
+        return view('reporting.adminreport', compact('staff')); 
     }
 
     public function superviseeList(Request $request)
@@ -368,6 +391,6 @@ class ReportController extends Controller
                 ->where('users.course_group', 'PSM 2')
                 ->exists();
     
-        return view('reporting.adminreport', compact('staff', 'pta1', 'pta2', 'psm1', 'psm2', 'pta1exist', 'pta2exist', 'psm1exist', 'psm2exist'));     
+        return view('reporting.listsuperviseereportadmin', compact('staff', 'pta1', 'pta2', 'psm1', 'psm2', 'pta1exist', 'pta2exist', 'psm1exist', 'psm2exist'));     
     }
 }

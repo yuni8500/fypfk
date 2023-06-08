@@ -42,32 +42,33 @@
 @endif
 
 @if( auth()->user()->category== "Staff")
-<div class="card">  
-    <div class="card-body">
-        <a href="{{ route('viewSubmission') }}" style="color: black">
-            <h5>PSM 2 Submission for First Evaluation [30%]</h5>
-            <label>Due date: Friday, 1/5/2023, 11:59 PM</label>
-        </a>
+@if($submissionData)
+    @foreach($submission as $data)
+    <div class="card">  
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td>
+                        <a href="{{ route('viewSubmission', $data->id) }}" style="color: black">
+                            <h5>{{$data->title}}</h5>
+                            <label>{{ date('l, d/m/Y', strtotime($data->dueDate)) }}, {{$data->dueTime}}</label>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
-<br>
+    <br>
+    @endforeach
+@elseif(! $submissionData)
 <div class="card">  
-    <div class="card-body">
-        <a href="{{ route('viewSubmission') }}" style="color: black">
-            <h5>PSM 2 Submission for Evaluators Evaluation [40%]</h5>
-            <label>Due date: Monday, 10/7/2023, 11:59 PM</label>
-        </a>
+        <div class="card-body">
+            <center>
+                <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Submission <i class="material-icons" style="color: red">warning</i></h5>
+            </center>
+        </div>
     </div>
-</div>
-<br>
-<div class="card">  
-    <div class="card-body">
-        <a href="{{ route('viewSubmission') }}" style="color: black">
-            <h5>PSM 2 Submission for Second Evaluation [30%]</h5>
-            <label>Due date: Friday, 14/7/2023, 11:59 PM</label>
-        </a>
-    </div>
-</div>
+@endif
 @endif
 
 @if( auth()->user()->category== "Admin")

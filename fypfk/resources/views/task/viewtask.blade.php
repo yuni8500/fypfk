@@ -97,7 +97,6 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Supervisor Attachment</label></td>
                             <td colspan="3">
-                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="supervisorAttachment" id="supervisorAttachment" accept="application/pdf" onchange="loadFile(this)" readonly>
                                 <!-- to preview the file from the input type in div -->
                                 <!--<div id="dvPreview" style="width: 455px; height: 405px; border-style: dashed"></div> -->
                                 @if($superviseefileexist)
@@ -118,7 +117,7 @@
                                     <a class="btn" href="{{ route('task') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3">
                                         <b>BACK</b>
                                     </a>
-                                    <a class="btn btn-danger" href="{{ route('deleteTask', $data->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
+                                    <a class="btn btn-danger" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px" data-toggle="modal" data-target="#exampleModalCenter">
                                         <b>DELETE</b>
                                     </a>
                                 </center>
@@ -126,6 +125,26 @@
                         </tr>
                     </tbody>
                 </form>
+                <!-- Modal Delete -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Warning Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to proceed delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+        <a type="button" href="{{ route('deleteTask', $data->id) }}" class="btn btn-primary">CONFIRM</a>
+      </div>
+    </div>
+  </div>
+</div>
                 @endforeach
                 </table>
             </div>
@@ -158,3 +177,4 @@
         });
     });
 </script>
+

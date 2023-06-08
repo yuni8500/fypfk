@@ -27,11 +27,7 @@ class LogbookController extends Controller
                 ->where('logbook.superviseeID', $id)
                 ->get();
 
-        $logbookUpdate = DB::table('logbook')
-                        ->where('approval', 'In Progress')
-                        ->exists();
-
-            return view('logbook.supervisorlb', compact('logbookview', 'logbookUpdate')); 
+            return view('logbook.supervisorlb', compact('logbookview')); 
     }
 
     public function logbookAdd()

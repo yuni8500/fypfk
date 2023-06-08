@@ -60,11 +60,12 @@
                 </div>
             </div>
         </nav> -->
+        
         <main class="py-4">
             <div class="container-fluid " align="center" style="padding:5px">
                 <div class="row justify-content-center">
-                    <div class="col-sm-6 ">
-                    <img src=" {{ asset('frontend') }}/images/logo.png" width="240">
+                    <div class="col-sm-10 ">
+                    <img src=" {{ asset('frontend') }}/images/frontLogo1.png" width="250">
                     </div>
                 </div>
             </div>

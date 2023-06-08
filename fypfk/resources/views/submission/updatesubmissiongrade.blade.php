@@ -39,14 +39,14 @@
                         <tr>
                             <td><label>Marks</label></td>
                             <td colspan="3">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 30%;" class="form-control" name="marks" id="marks" value="" required>
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 30%;" class="form-control" name="marks" id="marks" value="{{$student->marks}}" required>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">
                                 <center>
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
-                                        <b>SUBMIT</b>
+                                        <b>UPDATE</b>
                                     </button>
                                     <a class="btn btn-danger" href="{{ route('viewSubmission', $submissionData->id) }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>CANCEL</b>

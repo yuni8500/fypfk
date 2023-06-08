@@ -57,11 +57,10 @@
                             <td><center><label>{{$data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('viewEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 80%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('viewEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956; margin-bottom: 5px">
                                         <b>UPDATE</b>
                                     </a>
-                                    <br><br>
-                                    <a class="btn btn-primary" href="{{ route('viewEvaluationRecord', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 80%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('superviseeEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #86B5B3;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>

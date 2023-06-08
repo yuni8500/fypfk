@@ -49,6 +49,7 @@ Route::post('/insertSupervisorQuota', [App\Http\Controllers\QuotaController::cla
 Route::get('/viewSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'viewSupervisorQuota'])->name('viewSupervisorQuota');
 Route::put('/updateSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'updateSupervisorQuota'])->name('updateSupervisorQuota');
 Route::get('/deleteSupervisorQuota/{id}', [App\Http\Controllers\QuotaController::class, 'deleteSupervisorQuota'])->name('deleteSupervisorQuota');
+Route::get('/superviseeEmail/{id}', [App\Http\Controllers\QuotaController::class, 'getEmail'])->name('superviseeEmail');//email
 
 Route::get('/supervisorApplication', [App\Http\Controllers\SupervisorApplicationController::class, 'loadApplication'])->name('applicationform');
 Route::post('/insertApplication', [App\Http\Controllers\SupervisorApplicationController::class, 'insertApplication'])->name('insertApplication'); //insert database
@@ -115,6 +116,11 @@ Route::get('/supervisorEvaluation', [App\Http\Controllers\EvaluationController::
 Route::get('/evaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'evaluationGraded'])->name('evaluationGraded');
 Route::post('/insertEvaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'insertEvaluationGraded'])->name('insertEvaluationGraded');
 Route::get('/updateEvaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'updateEvaluationGraded'])->name('updateEvaluationGraded');
+Route::get('/evaluationRecordPTA1', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPTA1'])->name('evaluationRecordPTA1');
+Route::get('/evaluationRecordPTA2', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPTA2'])->name('evaluationRecordPTA2');
+Route::get('/evaluationRecordPSM1', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPSM1'])->name('evaluationRecordPSM1');
+Route::get('/evaluationRecordPSM2', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPSM2'])->name('evaluationRecordPSM2');
+Route::get('/superviseeEvaluation/{id}', [App\Http\Controllers\EvaluationController::class, 'superviseeEvaluation'])->name('superviseeEvaluation');
 Route::get('/evaluationAdmin', [App\Http\Controllers\EvaluationController::class, 'evaluationAdmin'])->name('evaluationAdmin');//admin
 Route::get('/evaluationpta2', [App\Http\Controllers\EvaluationController::class, 'evaluationpta2'])->name('evaluationpta2');
 Route::get('/evaluationpsm1', [App\Http\Controllers\EvaluationController::class, 'evaluationpsm1'])->name('evaluationpsm1');
@@ -139,8 +145,10 @@ Route::post('/insertSuperviseeSubmission/{id}', [App\Http\Controllers\Submission
 Route::put('/updateSuperviseeSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'updateSuperviseeSubmission'])->name('updateSuperviseeSubmission');
 Route::get('/viewFinalSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'viewFinalSubmission'])->name('viewFinalSubmission');
 Route::post('/insertFinalSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'insertFinalSubmission'])->name('insertFinalSubmission');
-Route::get('/viewSuperviseeSubmission', [App\Http\Controllers\SubmissionController::class, 'viewSuperviseeSubmission'])->name('viewSuperviseeSubmission'); //supervisor
-Route::get('/submissionGraded/{id}', [App\Http\Controllers\SubmissionController::class, 'submissionGraded'])->name('submissionGraded');
+Route::post('/viewSuperviseeSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'viewSuperviseeSubmission'])->name('viewSuperviseeSubmission'); //supervisor
+Route::get('/submissionGraded/{userID}/{submissionID}', [App\Http\Controllers\SubmissionController::class, 'submissionGraded'])->name('submissionGraded');
+Route::put('/updateGradedSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'updateGradedSubmission'])->name('updateGradedSubmission');
+Route::get('/editGradedSubmission/{userID}/{submissionID}', [App\Http\Controllers\SubmissionController::class, 'editGradedSubmission'])->name('editGradedSubmission');
 Route::get('/createSubmission', [App\Http\Controllers\SubmissionController::class, 'createSubmission'])->name('createSubmission'); //admin
 Route::post('/insertSubmission', [App\Http\Controllers\SubmissionController::class, 'insertSubmission'])->name('insertSubmission');
 Route::get('/editSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'editSubmission'])->name('editSubmission');
@@ -148,5 +156,6 @@ Route::put('/updateSubmission/{id}', [App\Http\Controllers\SubmissionController:
 Route::get('/deleteSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'deleteSubmission'])->name('deleteSubmission');
 Route::post('/viewSubmissionAdmin/{id}', [App\Http\Controllers\SubmissionController::class, 'viewSubmissionAdmin'])->name('viewSubmissionAdmin');
 Route::get('/viewSubmissionStudent/{userID}/{submissionID}', [App\Http\Controllers\SubmissionController::class, 'viewSubmissionStudent'])->name('viewSubmissionStudent');
+Route::get('/viewFinalSubmissionStudent/{userID}/{submissionID}', [App\Http\Controllers\SubmissionController::class, 'viewFinalSubmissionStudent'])->name('viewFinalSubmissionStudent');
 
 Route::get('/fypLibrary', [App\Http\Controllers\FyplibraryController::class, 'loadFypLibrary'])->name('fypLibrary');

@@ -51,9 +51,15 @@
                             <td><center><label></label>{{$data->semester}}</center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('viewSubmissionStudent', ['userID' => $data->userID, 'submissionID' => $submissionData->id]) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>VIEW</b>
-                                    </a>
+                                    @if (($submissionData->title) == 'PTA 2 Final Submission' || ($submissionData->title) == 'PSM 2 Final Submission')
+                                        <a class="btn btn-primary" href="{{ route('viewFinalSubmissionStudent', ['userID' => $data->userID, 'submissionID' => $submissionData->id]) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>VIEW</b>
+                                        </a>
+                                    @else
+                                        <a class="btn btn-primary" href="{{ route('viewSubmissionStudent', ['userID' => $data->userID, 'submissionID' => $submissionData->id]) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>VIEW</b>
+                                        </a>
+                                    @endif
                                 </center>
                             </td>
                         </tr>

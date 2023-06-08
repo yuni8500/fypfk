@@ -27,7 +27,7 @@
                             <div class="card-body">
                                 <center>
                                     <h5 style="color: black"><b>Total Project Submission</b></h5>
-                                    <label style="font-size: 50px">0</label>
+                                    <label style="font-size: 50px">{{ $totalSubmit }} / {{ $totalSubmission }}</label>
                                 </center>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                             <div class="card-body">
                                 <center>
                                     <h5 style="color: black"><b>Total Project Submission</b></h5>
-                                    <label style="font-size: 50px">0</label>
+                                    <label style="font-size: 50px">{{ $totalSubmit }} / {{ $totalSubmission }}</label>
                                 </center>
                             </div>
                         </div>
