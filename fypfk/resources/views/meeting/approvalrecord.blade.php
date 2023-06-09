@@ -59,7 +59,7 @@
                         <tr>
                             <th colspan="2">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Appointment Meeting To Update <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>

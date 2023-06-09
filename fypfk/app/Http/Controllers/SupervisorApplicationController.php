@@ -428,6 +428,10 @@ class SupervisorApplicationController extends Controller
 
     public function displaySupervisorApplicationRecord($id)
     {
+        $staff = DB::table('users')
+                ->where('id', $id)
+                ->first();
+
         $applydata = DB::table('supervisorapply')
                 ->join('users as supervisee', 'supervisorapply.superviseeID', '=', 'supervisee.id')
                 ->join('users as supervisor', 'supervisorapply.supervisorID', '=', 'supervisor.id')
@@ -439,6 +443,40 @@ class SupervisorApplicationController extends Controller
                 ->get();
 
 
-        return view('supervisorform.displayapplicationreport', compact('applydata'));     
+        return view('supervisorform.displayapplicationreport', compact('applydata', 'staff'));     
+    }
+
+    public function supervisorReplacement($id)
+    {
+        $applydata = DB::table('supervisorapply')
+                ->join('users as supervisee', 'supervisorapply.superviseeID', '=', 'supervisee.id')
+                ->join('users as supervisor', 'supervisorapply.supervisorID', '=', 'supervisor.id')
+                ->select([
+                    'supervisorapply.id AS applyID', 'supervisee.*', 'supervisor.*', 'supervisorapply.*', 'supervisee.id as superviseeID', 'supervisor.id as supervisorID', 'supervisee.matric as superviseeMatric', 'supervisor.matric as supervisorMatric', 'supervisee.name as superviseeName', 'supervisor.name as supervisorName', 'supervisee.course_group as superviseeCourse', 'supervisor.course_group as supervisorGroup',
+                ])
+                ->where('supervisorapply.superviseeID', $id)
+                ->first();
+        
+        $staff = DB::table('users')
+                ->where('category', 'Staff')
+                ->whereNotIn('id', function ($query) use ($id) {
+                    $query->select('supervisorID')
+                    ->from('supervisorapply')
+                    ->where('superviseeID', $id);
+                })
+                ->get();
+
+        return view('supervisorform.changesupervisorform', compact('applydata', 'staff'));     
+    }
+
+    public function updateSupervisorReplacement(Request $request, $id) //updatelogbook in database
+    {
+        $updateApply = supervisorapply::find($id); //model name
+
+        $updateApply->supervisorID = $request->input('currentSupervisor');
+
+        $updateApply->update();
+
+        return redirect()->back()->with('message', 'Supervisor Replacement Updated Successfully');
     }
 }

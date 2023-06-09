@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Submission;
 use App\Models\SuperviseeSubmission;
+use App\Models\FypLibrary;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,24 +139,19 @@ class SubmissionController extends Controller
         // insert query
         DB::table('superviseesubmission')->insert($data);
 
-        return redirect()->back()->with('message', 'Upload Submissiom Successfully');
+        return redirect()->back()->with('message', 'Upload Submission Successfully');
     }
 
     public function updateSuperviseeSubmission(Request $request, $id)
     {
         $updateS = SuperviseeSubmission::find($id); //model name
 
-        $path = public_path() . '/assets/' . $updateS->docSubmission;
-        // if (file_exists($path)) {
-           // unlink($path);
-       // }
-
-        $updateS->docSubmission = $request->input('filesubmit');
+        $updateS->docSubmission = $request->file('filesubmit');
 
         // to rename the proposal file
         $filename = time() . '.' . $updateS->docSubmission->getClientOriginalExtension();
         // to store the new file by moving to assets folder
-        $request->docSubmission->move('assets', $filename);
+        $request->filesubmit->move('assets', $filename);
 
         $updateS->docSubmission = $filename;
 
@@ -229,6 +225,24 @@ class SubmissionController extends Controller
         DB::table('fyplibrary')->insert($data);
 
         return redirect()->back()->with('message', 'Upload Final Submission Successfully');
+    }
+
+    public function updateFinalSubmission(Request $request, $id)
+    {
+        $updateFYP = FypLibrary::find($id); //model name
+
+        $updateFYP->fileProject = $request->file('projectFile');
+
+        // to rename the proposal file
+        $filename = time() . '.' . $updateFYP->fileProject->getClientOriginalExtension();
+        // to store the new file by moving to assets folder
+        $request->projectFile->move('assets', $filename);
+
+        $updateFYP->fileProject = $filename;
+
+        $updateFYP->update();
+
+        return redirect()->back()->with('message', 'Final Submission Updated Successfully');
     }
 
     //supervisor//

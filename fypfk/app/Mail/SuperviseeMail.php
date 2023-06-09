@@ -25,7 +25,7 @@ class SuperviseeMail extends Mailable
 
     public function build()
     {
-        return $this->from('fypfk@fk.info')->subject('SUPERVISOR REQUEST')->view('email.superviseeemail')->with('data', $this->data);
+        return $this->from('fypfk@fk.info')->subject('NOTIFICATION: SUPERVISOR REQUEST')->view('email.superviseeemail')->with('data', $this->data);
     }
 
 }

@@ -230,7 +230,7 @@
                         </li>
                         <li class="nav-item border-right dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img class="user-avatar rounded-circle mr-2" src="{{ asset('frontend') }}/images/avatar.jpg" alt="Avatar" width="30px" height="30px" style="vertical-align:baseline">
+                                <img class="user-avatar rounded-circle mr-2" src="/assets/{{Auth::user()->profilePic}}" alt="Avatar" width="30px" height="30px" style="vertical-align:baseline">
                                 <span class="d-none d-md-inline-block" style="color: white"><strong>{{ Auth::user()->name }}</strong><br> {{Auth::user()->category}}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">

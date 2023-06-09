@@ -34,7 +34,7 @@
 <div class="card">  
         <div class="card-body">
             <center>
-                <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Submission <i class="material-icons" style="color: red">warning</i></h5>
+                <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Submission <i class="material-icons" style="color: red">priority_high</i></h5>
             </center>
         </div>
     </div>
@@ -64,7 +64,7 @@
 <div class="card">  
         <div class="card-body">
             <center>
-                <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Submission <i class="material-icons" style="color: red">warning</i></h5>
+                <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Submission <i class="material-icons" style="color: red">priority_high</i></h5>
             </center>
         </div>
     </div>
@@ -87,9 +87,13 @@
                         <a href="{{ route('editSubmission', $data->id) }}" style="font-size: 25px;">
                             <i class="material-icons" style="color: #86B5B3">edit</i>
                         </a>
-                        <a href="{{ route('deleteSubmission', $data->id) }}" style="font-size: 25px;">
+                        @if($data->title == 'PTA 2 Final Submission' || $data->title == 'PSM 2 Final Submission')
+                        
+                        @else
+                        <a style="font-size: 25px;" data-toggle="modal" data-target="#deleteNoti">
                             <i class="material-icons" style="color: red">delete</i>
                         </a>
+                        @endif
                     </td>
                 </tr>
                 <tr>
@@ -104,6 +108,26 @@
         </div>
     </div>
     <br>
+    <!--delete noti-->
+<div class="modal fade" id="deleteNoti" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Warning Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to proceed delete the submission?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="{{ route('deleteSubmission', $data->id) }}">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
     @endforeach
 @elseif(! $submissionData)
 <div class="card">  

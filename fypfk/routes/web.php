@@ -67,6 +67,8 @@ Route::put('/updateApplicationAdmin/{id}', [App\Http\Controllers\SupervisorAppli
 Route::get('/supervisorApplicationRecord', [App\Http\Controllers\SupervisorApplicationController::class, 'supervisorApplicationRecord'])->name('supervisorApplicationRecord');
 Route::post('/supervisorApplicationRecordDisplay', [App\Http\Controllers\SupervisorApplicationController::class, 'supervisorApplicationRecordDisplay'])->name('supervisorApplicationRecordDisplay');
 Route::get('/displaySupervisorApplicationRecord/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'displaySupervisorApplicationRecord'])->name('displaySupervisorApplicationRecord');
+Route::get('/supervisorReplacementForm/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'supervisorReplacement'])->name('supervisorReplacement');
+Route::put('/updateSupervisorReplacement/{id}', [App\Http\Controllers\SupervisorApplicationController::class, 'updateSupervisorReplacement'])->name('updateSupervisorReplacement');
 
 Route::get('/appointmentSupervisee', [App\Http\Controllers\appointmentController::class, 'appointmentSupervisee'])->name('appointmentSupervisee');
 Route::get('/appointmentApprovalSupervisee', [App\Http\Controllers\appointmentController::class, 'appointmentApprovalSupervisee'])->name('appointmentApprovalSupervisee');
@@ -145,6 +147,7 @@ Route::post('/insertSuperviseeSubmission/{id}', [App\Http\Controllers\Submission
 Route::put('/updateSuperviseeSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'updateSuperviseeSubmission'])->name('updateSuperviseeSubmission');
 Route::get('/viewFinalSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'viewFinalSubmission'])->name('viewFinalSubmission');
 Route::post('/insertFinalSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'insertFinalSubmission'])->name('insertFinalSubmission');
+Route::put('/updateFinalSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'updateFinalSubmission'])->name('updateFinalSubmission');
 Route::post('/viewSuperviseeSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'viewSuperviseeSubmission'])->name('viewSuperviseeSubmission'); //supervisor
 Route::get('/submissionGraded/{userID}/{submissionID}', [App\Http\Controllers\SubmissionController::class, 'submissionGraded'])->name('submissionGraded');
 Route::put('/updateGradedSubmission/{id}', [App\Http\Controllers\SubmissionController::class, 'updateGradedSubmission'])->name('updateGradedSubmission');

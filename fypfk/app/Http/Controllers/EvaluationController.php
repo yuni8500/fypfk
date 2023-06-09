@@ -54,9 +54,17 @@ class EvaluationController extends Controller
                     ->where('evaluation.superviseeID', $id)
                     ->groupBy('evaluation.superviseeID', 'evaluation.evaluator1', 'evaluation.evaluator2')
                     ->selectRaw('evaluation.superviseeID, SUM(evaluationmarks.marks) as totalMarks')
-                    ->first();  
+                    ->first();
+                    
+        $applyexist = DB::table('supervisorapply')
+                    ->where('superviseeID', $id)
+                    ->exists();
 
-        return view('evaluation.evaluationinfo', compact('evaluation', 'evaluateMarks', 'totalMarks', 'user')); 
+        $userdata = DB::table('users')
+                    ->where('id', $id)
+                    ->first();
+
+        return view('evaluation.evaluationinfo', compact('evaluation', 'evaluateMarks', 'totalMarks', 'user', 'applyexist', 'userdata')); 
     }
 
     //supervisor//

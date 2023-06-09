@@ -25,6 +25,7 @@ class User extends Authenticatable
         'course_group',
         'password',
         'category',
+        'profilePic',
     ];
 
     /**

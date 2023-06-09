@@ -43,9 +43,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color: #86B5B3; color: black;">
                         <tr>
-                        @foreach($applydata as $data)
-                            <th colspan="7"><center>{{$data->supervisorName}}</center></th>
-                        @endforeach
+                            <th colspan="8"><center>{{$staff->name}}</center></th>
                         </tr>
                         <tr>
                             <th><center>STUDENT NAME</center></th>
@@ -55,6 +53,7 @@
                             <th><center>BACKGROUND PROBLEM</center></th>
                             <th><center>OBJECTIVE</center></th>
                             <th><center>SCOPE</center></th>
+                            <th><center>ACTION</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,6 +66,11 @@
                             <td>{{$data->problemStatement}}</td>
                             <td>{{$data->objective}}</td>
                             <td>{{$data->scope}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ route('supervisorReplacement', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956; margin-bottom: 5px">
+                                    <b>UPDATE</b>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

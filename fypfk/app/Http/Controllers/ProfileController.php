@@ -37,7 +37,15 @@ class ProfileController extends Controller
         $user->numPhone = $request->input('numPhone');
         $user->matric = $request->input('matric');
         $user->course_group = $request->input('course');
-        
+        $user->profilePic = $request->file('image');
+
+        // to rename the proposal file
+        $filename = time() . '.' . $user->profilePic->getClientOriginalExtension(); //get name declare
+
+        // to store the file by moving to assets folder
+        $request->image->move('assets', $filename);//get request name
+        //untuk rename
+        $user->profilePic = $filename;//get name declare
 
         $user->update();
 
@@ -52,6 +60,15 @@ class ProfileController extends Controller
         $user->email = $request->input('email');
         $user->numPhone = $request->input('numPhone');
         $user->matric = $request->input('matric');
+        $user->profilePic = $request->file('image');
+
+        // to rename the proposal file
+        $filename = time() . '.' . $user->profilePic->getClientOriginalExtension(); //get name declare
+
+        // to store the file by moving to assets folder
+        $request->image->move('assets', $filename);//get request name
+        //untuk rename
+        $user->profilePic = $filename;//get name declare
 
         $user->update();
 

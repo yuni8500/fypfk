@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('course_group')->nullable();
             $table->string('password');
             $table->string('category');
+            $table->string('profilePic')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

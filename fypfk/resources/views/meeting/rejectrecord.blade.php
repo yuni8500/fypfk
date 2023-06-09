@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>REJECTED SCHEDULE</b></h3>
+<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>REJECTED MEETING</b></h3>
 @if( auth()->user()->category== "Student")
 <a href="{{ route('appointmentSupervisee') }}" style="color: black">
     <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
@@ -59,7 +59,7 @@
                         <tr>
                             <th colspan="2">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Rejected Meeting <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -126,7 +126,7 @@
                         <tr>
                             <th colspan="2">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Rejected Meeting <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>

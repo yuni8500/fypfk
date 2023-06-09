@@ -56,25 +56,6 @@
                         </tr>
                     </tbody>
                 </table>
-                @endforeach
-                @elseif(! $inprogressexistSupervisor)
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead style="background-color: #86B5B3; color: black;">
-                        <tr>
-                            <th colspan="2">
-                                <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
-                                </center>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-
 <!--reject noti-->
 <div class="modal fade" id="rejectNoti" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -95,4 +76,23 @@
     </div>
   </div>
 </div>
+                @endforeach
+                @elseif(! $inprogressexistSupervisor)
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead style="background-color: #86B5B3; color: black;">
+                        <tr>
+                            <th colspan="2">
+                                <center>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Appointment Meeting <i class="material-icons" style="color: red">priority_high</i></h5>
+                                </center>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

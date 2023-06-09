@@ -57,10 +57,10 @@
                             <td><center><label>{{$data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('viewEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956; margin-bottom: 5px">
+                                    <a class="btn btn-primary" href="{{ route('viewEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956; margin-bottom: 5px">
                                         <b>UPDATE</b>
                                     </a>
-                                    <a class="btn btn-primary" href="{{ route('superviseeEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #86B5B3;">
+                                    <a class="btn btn-primary" href="{{ route('superviseeEvaluation', $data->superviseeID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #86B5B3;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>
@@ -71,7 +71,7 @@
                         <tr>
                             <th colspan="7">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Evaluation Report <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>

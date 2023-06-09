@@ -75,10 +75,8 @@
                     <tr>
                         <th style="background-color: #145956; color: white"><center>File Submissions</center></th>
                         <td colspan="3">
-                            <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" accept="application/pdf" onchange="loadFile(this)">
-
                             @if($fileexist)
-                                
+                                <input type="file" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="filesubmit" id="filesubmit" accept="application/pdf" onchange="loadFile(this)">
                             @elseif(! $fileexist)
                                 <div>
                                     <iframe src="/assets/{{$data->docSubmission}}" width="500" height="400"></iframe>

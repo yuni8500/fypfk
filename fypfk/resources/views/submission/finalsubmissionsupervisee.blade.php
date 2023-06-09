@@ -64,7 +64,7 @@
                 </form>
                 @else
                 @foreach($submission as $data) 
-                <form method="post" action="">
+                <form method="post" action="{{ route('updateFinalSubmission', $data->fyplibraryID ) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <tbody>

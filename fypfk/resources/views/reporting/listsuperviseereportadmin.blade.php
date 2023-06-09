@@ -52,7 +52,7 @@
                             <td><center><label></label>{{$pta1data->semester}}</center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $pta1data->userID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $pta1data->userID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>
@@ -65,7 +65,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -92,7 +92,7 @@
                             <td><center><label>{{$pta2data->semester}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $pta2data->userID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $pta2data->userID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>
@@ -105,7 +105,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -132,7 +132,7 @@
                             <td><center><label>{{$psm1data->semester}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $psm1data->userID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $psm1data->userID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>
@@ -145,7 +145,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -172,7 +172,7 @@
                             <td><center><label>{{$psm2data->semester}}</label></center></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $psm2data->userID) }}" style="border-radius: 10px; border: none; width: 50%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('reportSuperviseeView', $psm2data->userID) }}" style="border-radius: 10px; border: none; width: 60%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>VIEW</b>
                                     </a>
                                 </center>
@@ -185,7 +185,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>

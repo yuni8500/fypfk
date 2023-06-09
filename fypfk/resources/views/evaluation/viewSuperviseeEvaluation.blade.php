@@ -3,9 +3,16 @@
 @section('content')
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>EVALUATION INFORMATION</b></h3>
+@if( auth()->user()->category== "Staff")
 <a href="{{ route('evaluationRecordPTA1') }}" style="color: black">
     <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
 </a>
+@endif
+@if( auth()->user()->category== "Admin")
+<a href="{{ route('evaluationAdmin') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+@endif
 <br><br>
 <div class="card">
     

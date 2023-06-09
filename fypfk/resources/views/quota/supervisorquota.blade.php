@@ -69,48 +69,16 @@
                         <tr>
                             <td>{{$data->name}}</td>
                             <td><center>{{$data->course_group}}</center></td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA1))
-                                        <label>{{ $countsPTA1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA2))
-                                        <label>{{ $countsPTA2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM1))
-                                        <label>{{ $countsPSM1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM2))
-                                        <label>{{ $countsPSM2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
+                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
                             <td><center>{{$data->quota}}</center></td>
                             <td><center>{{$data->quota - $totalCount }}</center></td>
                             <td><center>{{ $countapplied[$data->supervisorID] }}</center></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('superviseeEmail', $data->userID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>EMAIL</b>
+                                        <b>NOTIFY</b>
                                     </a>
                             </td>
                         </tr>
@@ -140,7 +108,6 @@
                             <th rowspan="2"><center>SUPERVISION QUOTA</center></th>
                             <th rowspan="2"><center>AVAILABILITY QUOTA</center></th>
                             <th rowspan="2"><center>APPLICATION OF CURRENT SUPERVISION</center></th>
-                            <th rowspan="2"><center>ACTION</center></th>
                         </tr>
                         <tr>
                             <th><center>PTA 1</center></th>
@@ -154,45 +121,13 @@
                         <tr>
                             <td>{{$data->name}}</td>
                             <td><center>{{$data->course_group}}</center></td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA1))
-                                        <label>{{ $countsPTA1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA2))
-                                        <label>{{ $countsPTA2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM1))
-                                        <label>{{ $countsPSM1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM2))
-                                        <label>{{ $countsPSM2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
+                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
                             <td><center>{{$data->quota}}</center></td>
                             <td><center>{{$data->quota - $totalCount }}</center></td>
-                            <td><center>{{ $countapplied[$data->supervisorID] }}</center></td>
+                            <td><center>{{ $countapplied[$data->supervisorID] ?? 0 }}</center></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -237,49 +172,17 @@
                         <tr>
                             <td>{{$data->name}}</td>
                             <td><center>{{$data->course_group}}</center></td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA1))
-                                        <label>{{ $countsPTA1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPTA2))
-                                        <label>{{ $countsPTA2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM1))
-                                        <label>{{ $countsPSM1->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!is_null($countsPSM2))
-                                        <label>{{ $countsPSM2->count }}</label>
-                                    @else
-                                        <label>0</label>
-                                    @endif
-                                </center>
-                            </td>
+                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
+                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
                             <td><center>{{$data->quota}}</center></td>
                             <td><center>{{$data->quota - $totalCount }}</center></td>
-                            <td><center>{{ $countapplied[$data->supervisorID] }}</center></td>
+                            <td><center>{{ $countapplied[$data->supervisorID] ?? 0 }}</center></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('viewSupervisorQuota', $data->quotaID)}}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>UPDATE</b>
-                                    </a>
+                                    <b>UPDATE</b>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

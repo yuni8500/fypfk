@@ -66,9 +66,10 @@
 
 <!--admin-->
 @if( auth()->user()->category== "Admin")
-<a href="{{ route('logbookSupervisee') }}" style="color: black">
+<a href="{{ route('logbookAdmin') }}" style="color: black">
     <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
 </a>
+
 <br><br>
 
 <div class="card">

@@ -44,7 +44,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <h5 style="color: #145956"><i class="material-icons" style="color: #145956">offline_pin</i> Supervisor Application Completed</h5>
+                                    <h5 style="color: #145956"><i class="material-icons" style="color: #145956">offline_pin</i> Supervisor Application Completed <i class="material-icons" style="color: #145956">offline_pin</i></h5>
                                 </center>
                             </th>
                         </tr>

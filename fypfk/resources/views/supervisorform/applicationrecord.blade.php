@@ -82,7 +82,7 @@
                         <tr>
                             <td colspan="3">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data <i class="material-icons" style="color: red">warning</i></h5>
                                 </center>
                             </td>
                         </tr>

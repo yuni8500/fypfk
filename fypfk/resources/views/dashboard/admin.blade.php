@@ -40,7 +40,7 @@
                             <a href="{{ route('viewAnnouncement', $data->id) }}" style="font-size: 25px; margin-left:500px">
                                 <i class="material-icons" style="color: white">edit</i>
                             </a>
-                            <a href="{{ route('deleteAnnouncement', $data->id) }}" style="font-size: 25px;">
+                            <a style="font-size: 25px;" data-toggle="modal" data-target="#deleteNoti">
                                 <i class="material-icons" style="color: red">delete</i>
                             </a>
                         </td>
@@ -70,6 +70,26 @@
         </div>
     </div>
     </div>
+<!--delete noti-->
+<div class="modal fade" id="deleteNoti" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Warning Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to proceed delete an announcement?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="{{ route('deleteAnnouncement', $data->id) }}">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
     @endforeach
 </div>
 

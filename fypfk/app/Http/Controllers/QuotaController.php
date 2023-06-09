@@ -17,47 +17,54 @@ class QuotaController extends Controller
                     ->join('users', 'users.id', '=', 'supervisorquota.supervisorID')
                     ->select([
                         'users.id AS userID',
-                        'supervisorquota.id AS quotaID', 'users.*', 'supervisorquota.*'
+                        'supervisorquota.id AS quotaID',
+                        'supervisorquota.supervisorID',
+                        'users.*',
+                        'supervisorquota.quota',
+                        'supervisorquota.*'
                     ])
                     ->get();
 
-        $supervisorIDs = $getquota->pluck('supervisorID')->toArray(); // Get an array of all supervisorIDs
-        
+        $supervisorIDs = $getquota->pluck('supervisorID')->toArray();
+
         $countsPTA1 = DB::table('supervisorapply')
                     ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
-                    ->select(DB::raw('count(*) as count'))
-                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs) // Use whereIn to match multiple supervisorIDs
+                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs)
                     ->where('supervisorapply.statusApplied', 'Approved')
                     ->where('users.course_group', 'PTA 1')
-                    ->first();
+                    ->groupBy('supervisorapply.supervisorID')
+                    ->pluck(DB::raw('count(*)'), 'supervisorapply.supervisorID')
+                    ->toArray();
 
         $countsPTA2 = DB::table('supervisorapply')
                     ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
-                    ->select(DB::raw('count(*) as count'))
-                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs) // Use whereIn to match multiple supervisorIDs
+                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs)
                     ->where('supervisorapply.statusApplied', 'Approved')
                     ->where('users.course_group', 'PTA 2')
-                    ->first();
+                    ->groupBy('supervisorapply.supervisorID')
+                    ->pluck(DB::raw('count(*)'), 'supervisorapply.supervisorID')
+                    ->toArray();
 
         $countsPSM1 = DB::table('supervisorapply')
                     ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
-                    ->select(DB::raw('count(*) as count'))
-                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs) // Use whereIn to match multiple supervisorIDs
+                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs)
                     ->where('supervisorapply.statusApplied', 'Approved')
                     ->where('users.course_group', 'PSM 1')
-                    ->first();
+                    ->groupBy('supervisorapply.supervisorID')
+                    ->pluck(DB::raw('count(*)'), 'supervisorapply.supervisorID')
+                    ->toArray();
 
         $countsPSM2 = DB::table('supervisorapply')
                     ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
-                    ->select(DB::raw('count(*) as count'))
-                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs) // Use whereIn to match multiple supervisorIDs
+                    ->whereIn('supervisorapply.supervisorID', $supervisorIDs)
                     ->where('supervisorapply.statusApplied', 'Approved')
                     ->where('users.course_group', 'PSM 2')
-                    ->first();
+                    ->groupBy('supervisorapply.supervisorID')
+                    ->pluck(DB::raw('count(*)'), 'supervisorapply.supervisorID')
+                    ->toArray();
 
-        $totalCount = ($countsPTA1->count ?? 0) + ($countsPTA2->count ?? 0) + ($countsPSM1->count ?? 0) + ($countsPSM2->count ?? 0);
-        
-        //total application//
+        $totalCount = array_sum(array_values($countsPTA1)) + array_sum(array_values($countsPTA2)) + array_sum(array_values($countsPSM1)) + array_sum(array_values($countsPSM2));
+
         $countapplied = DB::table('supervisorquota')
                         ->leftJoin('supervisorapply', function ($join) {
                             $join->on('supervisorquota.supervisorID', '=', 'supervisorapply.supervisorID')
@@ -66,12 +73,12 @@ class QuotaController extends Controller
                         ->whereIn('supervisorquota.supervisorID', $supervisorIDs)
                         ->select('supervisorquota.supervisorID', DB::raw('COUNT(supervisorapply.id) as count'))
                         ->groupBy('supervisorquota.supervisorID')
-                        ->pluck('count', 'supervisorID')
+                        ->pluck('count', 'supervisorquota.supervisorID')
                         ->map(function ($count) {
                             return $count ?: 0;
                         });
-                        
-        return view('quota.supervisorquota', compact('getquota', 'countsPTA1', 'countsPTA2', 'countsPSM1', 'countsPSM2', 'totalCount', 'countapplied')); 
+
+        return view('quota.supervisorquota', compact('getquota', 'countsPTA1', 'countsPTA2', 'countsPSM1', 'countsPSM2', 'totalCount', 'countapplied'));
     }
 
     public function getEmail(Request $request, $id)
