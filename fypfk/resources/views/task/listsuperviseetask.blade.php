@@ -42,7 +42,7 @@
                         <tr>
                             <th colspan="3">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -80,7 +80,7 @@
                         <tr>
                             <th colspan="3">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -118,7 +118,7 @@
                         <tr>
                             <th colspan="3">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>
@@ -156,7 +156,7 @@
                         <tr>
                             <th colspan="3">
                                 <center>
-                                    <h5 style="color: red"><i class="material-icons" style="color: red">warning</i> No Data</h5>
+                                    <h5 style="color: red"><i class="material-icons" style="color: red">priority_high</i> No Supervisee <i class="material-icons" style="color: red">priority_high</i></h5>
                                 </center>
                             </th>
                         </tr>

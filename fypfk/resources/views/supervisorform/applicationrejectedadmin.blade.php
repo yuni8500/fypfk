@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="overflow-auto" style="overflow:auto;">
             <a class="btn btn-primary" href="{{ route('supervisorApplicationRecord') }}" style="border-radius: 10px; border: none; width: 30%; color: white; font-size: 15px; background-color: #145956; margin-left: 723px; margin-bottom:15px">
-            <i class="material-icons" style="color: white;">book</i> <b>SUPERVISOR APPLICATION RECORD</b>
+                <i class="material-icons" style="color: white;">book</i> <b>SUPERVISOR APPLICATION RECORD</b>
             </a>
             <br>
             <div class="table-responsive">

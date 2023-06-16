@@ -149,6 +149,7 @@ class appointmentController extends Controller
         return view('meeting.displaymeeting', compact('appointment')); 
     }
 
+    //supervisor//
     public function approvalMeeting()
     {
         $id = Auth::user()->id;

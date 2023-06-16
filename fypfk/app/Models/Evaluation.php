@@ -18,5 +18,6 @@ class Evaluation extends Model
         'dateEvaluate',
         'timeEvaluate',
         'location',
+        'linkFile',
     ];
 }

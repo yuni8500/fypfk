@@ -23,7 +23,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <select name="process" id="process" style="background-color: #86B5B3; border-radius: 10px; width: 20%;" class="form-control">
+                                    <select name="process" id="process" style="background-color: #86B5B3; border-radius: 10px; width: 20%;" class="form-control" required>
                                         <option value="To Do">TO DO</option>
                                         <option value="Doing">DOING</option>
                                         <option value="Done">DONE</option>
@@ -36,7 +36,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Task Title</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="taskTitle" id="taskTitle" value="">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="taskTitle" id="taskTitle" value="" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Assignor</label></td>
                             <td>
@@ -48,11 +48,11 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Due Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Priority</label></td>
                             <td>
-                                <select name="priority" id="priority" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="priority" id="priority" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="Low">Low</option>
                                     <option value="Medium">Medium</option>
                                     <option value="High">High</option>
@@ -62,7 +62,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Status</label></td>
                             <td>
-                                <select name="status" id="status" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="status" id="status" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="On Track">On Track</option>
                                     <option value="Off Track">Off Track</option>
                                     <option value="Risk">Risk</option>
@@ -70,7 +70,7 @@
                             </td>
                             <td style="text-align: center; color: black"><label>Task Details</label></td>
                             <td>
-                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" required></textarea>
                             </td>
                         </tr>
                         <tr>

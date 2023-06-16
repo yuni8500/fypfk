@@ -14,7 +14,7 @@
     <tr>
         <td>
             <select name="staffName" id="staffName" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
-                <option value="">Please select expert group</option>
+                <option value="">Please select staff name</option>
                 @foreach($staff as $data)
                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                 @endforeach

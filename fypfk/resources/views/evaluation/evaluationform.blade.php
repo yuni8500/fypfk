@@ -50,9 +50,15 @@
                         </tr>
                         @endforeach
                         <tr>
+                            <td style="text-align: center; color: black"><label>Link Evaluation File</label></td>
+                            <td colspan="3">
+                                <input type="url" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="linkFile" id="linkFile" value="" required>
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: center; color: black"><label>Evaluator 1</label></td>
                             <td colspan="3">
-                                <select name="staffName1" id="staffName1" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="staffName1" id="staffName1" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="">Please select evaluator 1 name</option>
                                     @foreach($staff as $data)
                                     <option value="{{ $data->name }}">{{ $data->name }}</option>
@@ -63,7 +69,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Evaluator 2</label></td>
                             <td colspan="3">
-                                <select name="staffName2" id="staffName2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="staffName2" id="staffName2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="">Please select evaluator 2 name</option>
                                     @foreach($staff as $data)
                                     <option value="{{ $data->name }}">{{ $data->name }}</option>
@@ -74,17 +80,17 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="date" id="date" value="">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="date" id="date" value="" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Time</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="time" id="time" value="">
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="time" id="time" value="" required>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center; color: black"><label>Location</label></td>
                             <td colspan="3">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="location" id="location" value="">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="location" id="location" value="" required>
                             </td>
                         </tr>
                         <tr>

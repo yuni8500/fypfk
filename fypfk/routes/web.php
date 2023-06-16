@@ -118,6 +118,7 @@ Route::get('/supervisorEvaluation', [App\Http\Controllers\EvaluationController::
 Route::get('/evaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'evaluationGraded'])->name('evaluationGraded');
 Route::post('/insertEvaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'insertEvaluationGraded'])->name('insertEvaluationGraded');
 Route::get('/updateEvaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'updateEvaluationGraded'])->name('updateEvaluationGraded');
+Route::put('/editEvaluationGraded/{id}', [App\Http\Controllers\EvaluationController::class, 'editEvaluation'])->name('editEvaluation');
 Route::get('/evaluationRecordPTA1', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPTA1'])->name('evaluationRecordPTA1');
 Route::get('/evaluationRecordPTA2', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPTA2'])->name('evaluationRecordPTA2');
 Route::get('/evaluationRecordPSM1', [App\Http\Controllers\EvaluationController::class, 'evaluationRecordPSM1'])->name('evaluationRecordPSM1');

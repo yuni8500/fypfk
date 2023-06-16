@@ -91,7 +91,7 @@ class TaskController extends Controller
         return view('task.viewtask', compact('taskview', 'fileexist', 'superviseefileexist')); 
     }
 
-    public function updateTask(Request $request, $id) //updatelogbook in database
+    public function updateTask(Request $request, $id) //updateTask in database
     {
         $updateTask = task::find($id); //model name
 
@@ -107,15 +107,18 @@ class TaskController extends Controller
         $updateTask->status = $request->input('status');
         $updateTask->taskDetails = $request->input('taskDetails');
         $updateTask->progress = $request->input('process');
-        $updateTask->attachment = $request->file('attachment');
 
-        // to rename the proposal file
-        $filename = time() . '.' . $updateTask->attachment->getClientOriginalExtension();
-        // to store the new file by moving to assets folder
-        $request->attachment->move('assets', $filename);
+        if ($request->hasFile('attachment')) 
+        {
+            $updateTask->attachment = $request->file('attachment');
 
-        $updateTask->attachment = $filename;
+            // To rename the proposal file
+            $filename = time() . '.' . $updateTask->attachment->getClientOriginalExtension();
+            // To store the new file by moving it to the assets folder
+            $request->attachment->move('assets', $filename);
 
+            $updateTask->attachment = $filename;
+        }
         $updateTask->update();
 
         return redirect()->back()->with('message', 'Task Updated Successfully');

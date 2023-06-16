@@ -26,7 +26,7 @@
                                 <label>Reason</label>
                             </td>
                             <td>
-                                <textarea class="form-control" name="reason" id="reason" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" placeholder="*Exp: Have the meeting. Please make an appointment on Thursday at 10AM*"></textarea>
+                                <textarea class="form-control" name="reason" id="reason" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" placeholder="*Exp: Have the meeting. Please make an appointment on Thursday at 10AM*" required></textarea>
                             </td>
                         </tr>
                         <tr>

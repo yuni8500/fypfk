@@ -25,7 +25,7 @@
                         <tr>
                             <th colspan="4">
                                 <center>
-                                    <select name="process" id="process" style="background-color: #86B5B3; border-radius: 10px; width: 20%;" class="form-control" value="{{$data->progress}}">
+                                    <select name="process" id="process" style="background-color: #86B5B3; border-radius: 10px; width: 20%;" class="form-control" value="{{$data->progress}}" required>
                                         <option value="To Do">TO DO</option>
                                         <option value="Doing">DOING</option>
                                         <option value="Done">DONE</option>
@@ -38,21 +38,21 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Task Title</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="taskTitle" id="taskTitle" value="{{$data->titleTask}}">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="taskTitle" id="taskTitle" value="{{$data->titleTask}}" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Assignor</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="assignor" id="assignor" value="{{$data->assignor}}">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="assignor" id="assignor" value="{{$data->assignor}}" required>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center; color: black"><label>Due Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="{{$data->dueDate}}">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="dueDate" id="dueDate" value="{{$data->dueDate}}" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Priority</label></td>
                             <td>
-                                <select name="priority" id="priority" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" value="{{$data->priority}}">
+                                <select name="priority" id="priority" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" value="{{$data->priority}}" required>
                                     <option value="Low">Low</option>
                                     <option value="Medium">Medium</option>
                                     <option value="High">High</option>
@@ -62,7 +62,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Status</label></td>
                             <td>
-                                <select name="status" id="status" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" value="{{$data->status}}">
+                                <select name="status" id="status" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" value="{{$data->status}}" required>
                                     <option value="On Track">On Track</option>
                                     <option value="Off Track">Off Track</option>
                                     <option value="Risk">Risk</option>
@@ -70,7 +70,7 @@
                             </td>
                             <td style="text-align: center; color: black"><label>Task Details</label></td>
                             <td>
-                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;">{{$data->taskDetails}}</textarea>
+                                <textarea class="form-control" name="taskDetails" id="taskDetails" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" required>{{$data->taskDetails}}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -114,7 +114,7 @@
                                     <button type="submit" class="btn btn-primary" style="background-color: #145956; border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px">
                                         <b>UPDATE</b>
                                     </button>
-                                    <a class="btn" href="{{ route('task') }}" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3">
+                                    <a class="btn" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px; background-color: #86B5B3" data-toggle="modal" data-target="#backNoti">
                                         <b>BACK</b>
                                     </a>
                                     <a class="btn btn-danger" style="border-radius: 10px; border: none; width: 100px; color: white; font-size: 15px" data-toggle="modal" data-target="#exampleModalCenter">
@@ -152,6 +152,26 @@
     </div>
 </div>
 <br>
+<!--back noti-->
+<div class="modal fade" id="backNoti" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Warning Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to cancel update a task?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="{{ route('task') }}">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 <!-- to preview the chosen file from computer -->

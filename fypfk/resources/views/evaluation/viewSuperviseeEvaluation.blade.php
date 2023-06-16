@@ -72,6 +72,8 @@
                                 {{$data->evaluator1}}
                             @endif
                         </td>
+                    </tr>
+                    <tr>
                         <th style="background-color: #86B5B3; color: black;"><center>Evaluators 2</center></th>
                         <td>
                             @if ($evaluation->isEmpty())

@@ -7,6 +7,9 @@
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>PROJECT REPORT - {{$studData->name}}</b></h3>
 
 @if( auth()->user()->category== "Staff")
+<a href="{{ route('reportListSupervisee') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
 <div class="overflow-auto" style="overflow:auto;">
     <div class="table-responsive">
         <table class="table" id="dataTable" width="100%" cellspacing="0">

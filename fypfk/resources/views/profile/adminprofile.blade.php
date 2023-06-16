@@ -15,6 +15,11 @@
     {{ session()->get('message') }}
 </div>
 @endif
+@if(session()->has('error'))
+<div class="alert alert-danger">
+    {{ session()->get('error') }}
+</div>
+@endif
 
 <div class="row">
 
@@ -77,6 +82,33 @@
                         </td>
                         <td>
                             <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="numPhone" id="numPhone" value="{{$user->numPhone}}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td style="padding-left: 30px;">
+                            <label>Old Password:</label>
+                        </td>
+                        <td style="padding-left: 30px;">
+                            <label>New Password:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="oldPsw" id="oldPsw" value="" required>
+                        </td>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="newPsw" id="newPsw" value="" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 30px;" colspan="2">
+                            <label>Confirm Password:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="confirmPsw" id="confirmPsw" value="" required>
                         </td>
                     </tr>
                     <tr>

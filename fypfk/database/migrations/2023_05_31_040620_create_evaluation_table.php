@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('dateEvaluate');
             $table->time('timeEvaluate');
             $table->string('location');
+            $table->string('linkFile')->nullable();
             $table->timestamps();
         });
     }

@@ -59,7 +59,7 @@
                             </div>
                         <div>
                         <div class="row mb-0 justify-content-center">
-                            <div class="col-md-6">
+                            <div>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="row mb-0 justify-content-center">
-                            <div class="col-md-6">
+                            <div>
                                 <a class="btn btn-link" href="{{ route('register') }}" style="margin-top: 30px; color: black;">
                                     <b>{{ __('Do not have account? Register Now') }}</b>
                                 </a>

@@ -28,8 +28,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($pta1exist)
-                        @foreach($pta1 as $pta1data)
+                    @if($pta1exist && count($pta1) > 0)
+                    @foreach($pta1 as $pta1data)
                         <tr>
                             <td><center><label>{{$pta1data->superviseeName}}</label></center></td>
                             <td><center><label>{{$pta1data->superviseeMatric}}</label></center></td>
@@ -39,20 +39,30 @@
                             <td><center><label>{{$pta1data->location}}</label></center></td>
                             <td>
                                 <center>
-                                    @if ($gradeexist)
-                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    @php
+                                        $name = Auth::user()->name;
+                                        $superviseeID = $psm1data->superviseeID;
+                                        $gradeexist = DB::table('evaluationmarks')
+                                                    ->join('evaluation', 'evaluationmarks.evaluationID', '=', 'evaluation.id')
+                                                    ->where('evaluationmarks.superviseeID', $superviseeID)
+                                                    ->where('evaluationmarks.evaluatorName', $name)
+                                                    ->exists();
+                                    @endphp
+
+                                @if ($gradeexist)
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>UPDATE</b>
                                     </a>
-                                    @else
-                                    <a class="btn btn-primary" href="{{ route('superviseeEvaluation', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                @else
+                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $pta1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>GRADED</b>
                                     </a>
-                                    @endif
+                                @endif
                                 </center>
                             </td>
                         </tr>
-                        @endforeach
-                        @elseif(! $pta1exist)
+                    @endforeach
+                    @else
                         <tr>
                             <th colspan="7">
                                 <center>
@@ -60,7 +70,7 @@
                                 </center>
                             </th>
                         </tr>
-                        @endif
+                    @endif
                     </tbody>
                     
                     <thead style="background-color: #86B5B3; color: black;">
@@ -89,20 +99,30 @@
                             <td><center><label>{{$pta2data->location}}</label></center></td>
                             <td>
                                 <center>
+                                    @php
+                                        $name = Auth::user()->name;
+                                        $superviseeID = $psm1data->superviseeID;
+                                        $gradeexist = DB::table('evaluationmarks')
+                                                    ->join('evaluation', 'evaluationmarks.evaluationID', '=', 'evaluation.id')
+                                                    ->where('evaluationmarks.superviseeID', $superviseeID)
+                                                    ->where('evaluationmarks.evaluatorName', $name)
+                                                    ->exists();
+                                    @endphp
+
                                     @if ($gradeexist)
-                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
+                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                         <b>UPDATE</b>
                                     </a>
                                     @else
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>GRADED</b>
-                                    </a>
+                                        <a class="btn btn-primary" href="{{ route('evaluationGraded', $pta2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>GRADED</b>
+                                        </a>
                                     @endif
                                 </center>
                             </td>
                         </tr>
                         @endforeach
-                    @elseif(!$pta2exist)
+                        @else
                         <tr>
                             <th colspan="7">
                                 <center>
@@ -129,7 +149,7 @@
                     </thead>
                     <tbody>
                     @if($psm1exist)
-                        @foreach($psm1 as $psm1data)
+                    @foreach($psm1 as $psm1data)
                         <tr>
                             <td><center><label>{{$psm1data->superviseeName}}</label></center></td>
                             <td><center><label>{{$psm1data->superviseeMatric}}</label></center></td>
@@ -139,20 +159,30 @@
                             <td><center><label>{{$psm1data->location}}</label></center></td>
                             <td>
                                 <center>
+                                    @php
+                                        $name = Auth::user()->name;
+                                        $superviseeID = $psm1data->superviseeID;
+                                        $gradeexist = DB::table('evaluationmarks')
+                                                    ->join('evaluation', 'evaluationmarks.evaluationID', '=', 'evaluation.id')
+                                                    ->where('evaluationmarks.superviseeID', $superviseeID)
+                                                    ->where('evaluationmarks.evaluatorName', $name)
+                                                    ->exists();
+                                    @endphp
+
                                     @if ($gradeexist)
-                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>UPDATE</b>
-                                    </a>
+                                        <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>UPDATE</b>
+                                        </a>
                                     @else
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>GRADED</b>
-                                    </a>
+                                        <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm1data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>GRADED</b>
+                                        </a>
                                     @endif
                                 </center>
                             </td>
                         </tr>
-                        @endforeach
-                    @elseif(!$psm1exist)
+                    @endforeach
+                    @else
                         <tr>
                             <th colspan="7">
                                 <center>
@@ -179,7 +209,7 @@
                     </thead>
                     <tbody>
                     @if($psm2exist)
-                        @foreach($psm2 as $psm2data)
+                    @foreach($psm2 as $psm2data)
                         <tr>
                             <td><center><label>{{$psm2data->superviseeName}}</label></center></td>
                             <td><center><label>{{$psm2data->superviseeMatric}}</label></center></td>
@@ -189,20 +219,28 @@
                             <td><center><label>{{$psm2data->location}}</label></center></td>
                             <td>
                                 <center>
+                                    @php
+                                        $name = Auth::user()->name;
+                                        $gradeexist = DB::table('evaluationmarks')
+                                                    ->where('superviseeID', $psm2data->superviseeID)
+                                                    ->where('evaluatorName', $name)
+                                                    ->exists();
+                                    @endphp
+
                                     @if ($gradeexist)
-                                    <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 90%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>UPDATE</b>
-                                    </a>
+                                        <a class="btn btn-primary" href="{{ route('updateEvaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>UPDATE</b>
+                                        </a>
                                     @else
-                                    <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>GRADED</b>
-                                    </a>
+                                        <a class="btn btn-primary" href="{{ route('evaluationGraded', $psm2data->evaluationID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
+                                            <b>GRADED</b>
+                                        </a>
                                     @endif
                                 </center>
                             </td>
                         </tr>
-                        @endforeach
-                    @elseif(!$psm2exist)
+                    @endforeach
+                    @else
                         <tr>
                             <th colspan="7">
                                 <center>

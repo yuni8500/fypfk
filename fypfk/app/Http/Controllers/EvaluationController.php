@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Evaluation;
+use App\Models\EvaluationMarks;
 
 class EvaluationController extends Controller
 {
@@ -31,20 +32,25 @@ class EvaluationController extends Controller
                         
         $evaluationMarks = DB::table('evaluationmarks')
                         ->join('evaluation', 'evaluationmarks.evaluationID', '=', 'evaluation.id')
-                        ->select('evaluation.evaluator1', 'evaluation.evaluator2', 'evaluationmarks.marks')
+                        ->select('evaluation.evaluator1', 'evaluation.evaluator2', 'evaluationmarks.evaluatorName', 'evaluationmarks.file', 'evaluationmarks.marks', 'evaluationmarks.comment')
                         ->where('evaluation.superviseeID', $id)
                         ->get();
 
-        $evaluator1name = null;
-        $evaluator2name = null;
-
-        $evaluateMarks = []; // Define and initialize the variable
+        $evaluateData = [];
 
         foreach ($evaluationMarks as $marks) {
-            if ($marks->evaluator1 === $evaluator1name) {
-                $evaluateMarks['Evaluator 1'] = $marks->marks;
-            } elseif ($marks->evaluator1 === $evaluator2name) {
-                $evaluateMarks['Evaluator 2'] = $marks->marks;
+            if (!empty($marks->file) && $marks->evaluator1 === $marks->evaluatorName) {
+                $evaluateData['Evaluator 1'] = [
+                    'file' => $marks->file,
+                    'marks' => $marks->marks,
+                    'comment' => $marks->comment
+                ];
+            } elseif (!empty($marks->file) && $marks->evaluator2 === $marks->evaluatorName) {
+                $evaluateData['Evaluator 2'] = [
+                    'file' => $marks->file,
+                    'marks' => $marks->marks,
+                    'comment' => $marks->comment
+                ];
             }
         }
 
@@ -54,17 +60,9 @@ class EvaluationController extends Controller
                     ->where('evaluation.superviseeID', $id)
                     ->groupBy('evaluation.superviseeID', 'evaluation.evaluator1', 'evaluation.evaluator2')
                     ->selectRaw('evaluation.superviseeID, SUM(evaluationmarks.marks) as totalMarks')
-                    ->first();
-                    
-        $applyexist = DB::table('supervisorapply')
-                    ->where('superviseeID', $id)
-                    ->exists();
+                    ->first();  
 
-        $userdata = DB::table('users')
-                    ->where('id', $id)
-                    ->first();
-
-        return view('evaluation.evaluationinfo', compact('evaluation', 'evaluateMarks', 'totalMarks', 'user', 'applyexist', 'userdata')); 
+        return view('evaluation.evaluationinfo', compact('evaluation', 'evaluateData', 'totalMarks', 'user')); 
     }
 
     //supervisor//
@@ -91,7 +89,7 @@ class EvaluationController extends Controller
                     ->select([
                         'evaluation.id AS evaluationID', 'supervisee.*', 'supervisor.*', 'evaluation.*', 'supervisee.name as superviseeName', 'supervisor.name as supervisorName', 'supervisee.id as superviseeID', 'supervisor.id as supervisorID', 'supervisee.matric as superviseeMatric', 'supervisor.matric as supervisorMatric', 'supervisee.course_group as superviseeCourse', 'supervisor.course_group as supervisorGroup'
                     ])
-                    ->where('supervisee.course_group', 'PTA 1')
+                    
                     ->where(function ($query) use ($name) {
                         $query->where('evaluation.evaluator1', $name)
                         ->orWhere('evaluation.evaluator2', $name);
@@ -137,6 +135,7 @@ class EvaluationController extends Controller
                 })
                 ->get();
 
+
         $psm1exist = DB::table('evaluation')
                     ->join('users as supervisee', 'evaluation.superviseeID', '=', 'supervisee.id')
                     ->join('users as supervisor', 'evaluation.supervisorID', '=', 'supervisor.id')
@@ -176,15 +175,7 @@ class EvaluationController extends Controller
                     })
                     ->exists();
 
-        $gradeexist = DB::table('evaluationmarks')
-                    ->join('evaluation', 'evaluationmarks.evaluationID', '=', 'evaluation.id')
-                    ->where(function ($query) use ($name) {
-                        $query->where('evaluation.evaluator1', $name)
-                              ->orWhere('evaluation.evaluator2', $name);
-                    })
-                    ->exists();
-
-        return view('evaluation.evaluationsupervisor', compact('pta1', 'pta1exist', 'pta2', 'pta2exist', 'psm1', 'psm1exist', 'psm2', 'psm2exist', 'gradeexist')); 
+        return view('evaluation.evaluationsupervisor', compact('pta1', 'pta1exist', 'pta2', 'pta2exist', 'psm1', 'psm1exist', 'psm2', 'psm2exist')); 
     }
 
     public function evaluationGraded($id)
@@ -195,7 +186,10 @@ class EvaluationController extends Controller
                         ->join('users as supervisee', 'evaluation.superviseeID', '=', 'supervisee.id')
                         ->join('users as supervisor', 'evaluation.supervisorID', '=', 'supervisor.id')
                         ->select([
-                            'evaluation.id AS evaluationID', 'supervisee.*', 'supervisor.*', 'evaluation.*', 'supervisee.name as superviseeName', 'supervisor.name as supervisorName', 'supervisee.id as superviseeID', 'supervisor.id as supervisorID', 'supervisee.matric as superviseeMatric', 'supervisor.matric as supervisorMatric', 'supervisee.course_group as superviseeCourse', 'supervisor.course_group as supervisorGroup'
+                            'evaluation.id AS evaluationID', 'supervisee.*', 'supervisor.*', 'evaluation.*', 'supervisee.name as superviseeName', 
+                            'supervisor.name as supervisorName', 'supervisee.id as superviseeID', 'supervisor.id as supervisorID', 
+                            'supervisee.matric as superviseeMatric', 'supervisor.matric as supervisorMatric', 
+                            'supervisee.course_group as superviseeCourse', 'supervisor.course_group as supervisorGroup'
                             ])
                         ->where('evaluation.id', $id)
                         ->where('evaluation.evaluator1', $name)
@@ -253,6 +247,34 @@ class EvaluationController extends Controller
         DB::table('evaluationmarks')->insert($data);
 
         return redirect()->back()->with('message', 'Evaluation Marks Record Successfully');
+    }
+
+    public function editEvaluation(Request $request, $id) //updateTask in database
+    {
+        $updateEvaluation = EvaluationMarks::find($id); //model name
+
+        $path = public_path() . '/assets/' . $updateEvaluation->file;
+        // if (file_exists($path)) {
+           // unlink($path);
+       // }
+
+        $updateEvaluation->marks = $request->input('marks');
+        $updateEvaluation->comment = $request->input('comment');
+
+        if ($request->hasFile('fileEvaluate')) 
+        {
+            $updateEvaluation->file = $request->file('fileEvaluate');
+
+            // To rename the proposal file
+            $filename = time() . '.' . $updateEvaluation->file->getClientOriginalExtension();
+            // To store the new file by moving it to the assets folder
+            $request->fileEvaluate->move('assets', $filename);
+
+            $updateEvaluation->file = $filename;
+        }
+        $updateEvaluation->update();
+
+        return redirect()->back()->with('message', 'Evaluation Updated Successfully');
     }
 
     public function evaluationRecordPTA1()
@@ -682,6 +704,7 @@ class EvaluationController extends Controller
         $date = $request->input('date');
         $time = $request->input('time');
         $location = $request->input('location');
+        $linkFile = $request->input('linkFile');
 
 
         $data = array(
@@ -692,6 +715,7 @@ class EvaluationController extends Controller
             'dateEvaluate' => $date,
             'timeEvaluate' => $time,
             'location' => $location,
+            'linkFile' => $linkFile,
         );
 
         // insert query
@@ -780,6 +804,7 @@ class EvaluationController extends Controller
         $updateEvaluation->dateEvaluate = $request->input('date');
         $updateEvaluation->timeEvaluate = $request->input('time');
         $updateEvaluation->location = $request->input('location');
+        $updateEvaluation->linkFile = $request->input('linkFile');
 
         $updateEvaluation->update();
 

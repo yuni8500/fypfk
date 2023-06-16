@@ -50,12 +50,18 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="text-align: center; color: black"><label>Link Evaluation File</label></td>
+                            <td colspan="3">
+                                <input type="url" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="linkFile" id="linkFile" value="{{ $evaluationdata->linkFile }}" required>
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: center; color: black"><label>Evaluator 1</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator1" id="evaluator1" value="{{ $evaluationdata->evaluator1 }}">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator1" id="evaluator1" value="{{ $evaluationdata->evaluator1 }}" readonly>
                             </td>
                             <td colspan="2">
-                                <select name="staffName1" id="staffName1" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="staffName1" id="staffName1" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="">Select evaluator 1 name for updating process</option>
                                     @foreach($staff as $data)
                                     <option value="{{ $data->name }}">{{ $data->name }}</option>
@@ -66,10 +72,10 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Evaluator 2</label></td>
                             <td>
-                            <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator2" id="evaluator2" value="{{ $evaluationdata->evaluator2 }}">
+                            <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="evaluator2" id="evaluator2" value="{{ $evaluationdata->evaluator2 }}" readonly>
                             </td>
                             <td colspan="2">
-                                <select name="staffName2" id="staffName2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control">
+                                <select name="staffName2" id="staffName2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" required>
                                     <option value="">Select evaluator 2 name for updating process</option>
                                     @foreach($staff as $data)
                                     <option value="{{ $data->name }}">{{ $data->name }}</option>
@@ -80,17 +86,17 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="date" id="date" value="{{ $evaluationdata->dateEvaluate }}">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="date" id="date" value="{{ $evaluationdata->dateEvaluate }}" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Time</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="time" id="time" value="{{ $evaluationdata->timeEvaluate }}">
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="time" id="time" value="{{ $evaluationdata->timeEvaluate }}" required>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center; color: black"><label>Location</label></td>
                             <td colspan="3">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="location" id="location" value="{{ $evaluationdata->location }}">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="location" id="location" value="{{ $evaluationdata->location }}" required>
                             </td>
                         </tr>
                         <tr>

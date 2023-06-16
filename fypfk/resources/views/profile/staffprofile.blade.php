@@ -15,6 +15,11 @@
     {{ session()->get('message') }}
 </div>
 @endif
+@if(session()->has('error'))
+<div class="alert alert-danger">
+    {{ session()->get('error') }}
+</div>
+@endif
 
 <div class="row">
 
@@ -80,8 +85,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-left: 30px;" colspan="2">
+                        <td style="padding-left: 30px;">
                             <label>Expert Group:</label>
+                        </td>
+                        <td style="padding-left: 30px;">
+                            <label>Old Password:</label>
                         </td>
                     </tr>
                     <tr>
@@ -101,6 +109,25 @@
                                 <option value="CNRG">CNRG</option>
                                 <option value="SCORE">SCORE</option>
                             </select>
+                        </td>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="oldPsw" id="oldPsw" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 30px;">
+                            <label>New Password:</label>
+                        </td>
+                        <td style="padding-left: 30px;">
+                            <label>Confirm Password:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="newPsw" id="newPsw" value="" required>
+                        </td>
+                        <td>
+                            <input type="password" style="background-color: #86B5B3; border-radius: 10px; width: 70%; margin-left: 30px" class="form-control" name="confirmPsw" id="confirmPsw" value="" required>
                         </td>
                     </tr>
                     <tr>

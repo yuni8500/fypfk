@@ -66,19 +66,31 @@
                     </thead>
                     <tbody>
                     @foreach($getquota as $data)
+                    @php
+                        $supervisorID = $data->supervisorID;
+                        $countsPTA1Collection = collect($countsPTA1);
+                        $countsPTA2Collection = collect($countsPTA2);
+                        $countsPSM1Collection = collect($countsPSM1);
+                        $countsPSM2Collection = collect($countsPSM2);
+                        $countsPTA1Total = $countsPTA1Collection->get($supervisorID, 0);
+                        $countsPTA2Total = $countsPTA2Collection->get($supervisorID, 0);
+                        $countsPSM1Total = $countsPSM1Collection->get($supervisorID, 0);
+                        $countsPSM2Total = $countsPSM2Collection->get($supervisorID, 0);
+                        $totalCount = $countsPTA1Total + $countsPTA2Total + $countsPSM1Total + $countsPSM2Total;
+                    @endphp
                         <tr>
-                            <td>{{$data->name}}</td>
-                            <td><center>{{$data->course_group}}</center></td>
-                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{$data->quota}}</center></td>
-                            <td><center>{{$data->quota - $totalCount }}</center></td>
-                            <td><center>{{ $countapplied[$data->supervisorID] }}</center></td>
+                            <td>{{ $data->name }}</td>
+                            <td><center>{{ $data->course_group }}</center></td>
+                            <td><center>{{ $countsPTA1Total }}</center></td>
+                            <td><center>{{ $countsPTA2Total }}</center></td>
+                            <td><center>{{ $countsPSM1Total }}</center></td>
+                            <td><center>{{ $countsPSM2Total }}</center></td>
+                            <td><center>{{ $data->quota }}</center></td>
+                            <td><center>{{ $data->quota - $totalCount }}</center></td>
+                            <td><center>{{ $countapplied->get($data->supervisorID, 0) }}</center></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('superviseeEmail', $data->userID) }}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
-                                        <b>NOTIFY</b>
+                                        <b>EMAIL</b>
                                     </a>
                             </td>
                         </tr>
@@ -118,16 +130,28 @@
                     </thead>
                     <tbody>
                     @foreach($getquota as $data)
+                    @php
+                        $supervisorID = $data->supervisorID;
+                        $countsPTA1Collection = collect($countsPTA1);
+                        $countsPTA2Collection = collect($countsPTA2);
+                        $countsPSM1Collection = collect($countsPSM1);
+                        $countsPSM2Collection = collect($countsPSM2);
+                        $countsPTA1Total = $countsPTA1Collection->get($supervisorID, 0);
+                        $countsPTA2Total = $countsPTA2Collection->get($supervisorID, 0);
+                        $countsPSM1Total = $countsPSM1Collection->get($supervisorID, 0);
+                        $countsPSM2Total = $countsPSM2Collection->get($supervisorID, 0);
+                        $totalCount = $countsPTA1Total + $countsPTA2Total + $countsPSM1Total + $countsPSM2Total;
+                    @endphp
                         <tr>
-                            <td>{{$data->name}}</td>
-                            <td><center>{{$data->course_group}}</center></td>
-                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{$data->quota}}</center></td>
-                            <td><center>{{$data->quota - $totalCount }}</center></td>
-                            <td><center>{{ $countapplied[$data->supervisorID] ?? 0 }}</center></td>
+                            <td>{{ $data->name }}</td>
+                            <td><center>{{ $data->course_group }}</center></td>
+                            <td><center>{{ $countsPTA1Total }}</center></td>
+                            <td><center>{{ $countsPTA2Total }}</center></td>
+                            <td><center>{{ $countsPSM1Total }}</center></td>
+                            <td><center>{{ $countsPSM2Total }}</center></td>
+                            <td><center>{{ $data->quota }}</center></td>
+                            <td><center>{{ $data->quota - $totalCount }}</center></td>
+                            <td><center>{{ $countapplied->get($data->supervisorID, 0) }}</center></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -169,16 +193,28 @@
                     </thead>
                     <tbody>
                     @foreach($getquota as $data)
+                    @php
+                        $supervisorID = $data->supervisorID;
+                        $countsPTA1Collection = collect($countsPTA1);
+                        $countsPTA2Collection = collect($countsPTA2);
+                        $countsPSM1Collection = collect($countsPSM1);
+                        $countsPSM2Collection = collect($countsPSM2);
+                        $countsPTA1Total = $countsPTA1Collection->get($supervisorID, 0);
+                        $countsPTA2Total = $countsPTA2Collection->get($supervisorID, 0);
+                        $countsPSM1Total = $countsPSM1Collection->get($supervisorID, 0);
+                        $countsPSM2Total = $countsPSM2Collection->get($supervisorID, 0);
+                        $totalCount = $countsPTA1Total + $countsPTA2Total + $countsPSM1Total + $countsPSM2Total;
+                    @endphp
                         <tr>
-                            <td>{{$data->name}}</td>
-                            <td><center>{{$data->course_group}}</center></td>
-                            <td><center>{{ $countsPTA1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPTA2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM1[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{ $countsPSM2[$data->supervisorID] ?? 0 }}</center></td>
-                            <td><center>{{$data->quota}}</center></td>
-                            <td><center>{{$data->quota - $totalCount }}</center></td>
-                            <td><center>{{ $countapplied[$data->supervisorID] ?? 0 }}</center></td>
+                            <td>{{ $data->name }}</td>
+                            <td><center>{{ $data->course_group }}</center></td>
+                            <td><center>{{ $countsPTA1Total }}</center></td>
+                            <td><center>{{ $countsPTA2Total }}</center></td>
+                            <td><center>{{ $countsPSM1Total }}</center></td>
+                            <td><center>{{ $countsPSM2Total }}</center></td>
+                            <td><center>{{ $data->quota }}</center></td>
+                            <td><center>{{ $data->quota - $totalCount }}</center></td>
+                            <td><center>{{ $countapplied->get($data->supervisorID, 0) }}</center></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('viewSupervisorQuota', $data->quotaID)}}" style="border-radius: 10px; border: none; width: 100%; color: white; font-size: 15px; background-color: #145956;">
                                     <b>UPDATE</b>

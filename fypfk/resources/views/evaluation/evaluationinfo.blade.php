@@ -8,7 +8,6 @@
     
     <div class="card-body">
         <div class="overflow-auto" style="overflow:auto;">
-        @if($applyexist)
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
@@ -63,6 +62,8 @@
                                 {{$data->evaluator1}}
                             @endif
                         </td>
+                    </tr>
+                    <tr>
                         <th style="background-color: #86B5B3; color: black;"><center>Evaluators 2</center></th>
                         <td>
                             @if ($evaluation->isEmpty())
@@ -73,16 +74,24 @@
                         </td>
                     </tr>
                     @endforeach
+                    @foreach ($evaluateData as $evaluator => $datafile)
                     <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 1</center></th>
+                        <th style="background-color: #86B5B3; color: black;"><center>Comment {{ $evaluator }}</center></th>
                         <td>
-                            {{ $evaluateMarks['Evaluator 1'] ?? 'No graded' }}
-                        </td>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 2</center></th>
-                        <td>
-                            {{ $evaluateMarks['Evaluator 2'] ?? 'No graded' }}
+                            {{ $datafile['comment'] ?? 'No comment' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th style="background-color: #86B5B3; color: black;"><center>Marks {{ $evaluator }}</center></th>
+                        <td>
+                            @if (isset($datafile['marks']))
+                                {{ $datafile['marks'] }}
+                            @else
+                                No grade
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
                     <tr>
                         <th style="background-color: #86B5B3; color: black;"><center>Total Marks</center></th>
                         <td colspan="3">
@@ -91,52 +100,6 @@
                     </tr>
                 </table>
             </div>
-        @else
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Name</center></th>
-                        <td colspan="3">{{$userdata->name}}</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Student ID</center></th>
-                        <td colspan="3">{{$userdata->matric}}</td>
-                    </tr> 
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Supervisor Name</center></th>
-                        <td colspan="3">No Supervisor</td>
-                    </tr> 
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Date</center></th>
-                        <td colspan="3">Not assigned yet</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Time</center></th>
-                        <td colspan="3">Not assigned yet</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Location</center></th>
-                        <td colspan="3">Not assigned yet</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Evaluators 1</center></th>
-                        <td>Not assigned yet</td>
-                        <th style="background-color: #86B5B3; color: black;"><center>Evaluators 2</center></th>
-                        <td>Not assigned yet</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 1</center></th>
-                        <td>No graded</td>
-                        <th style="background-color: #86B5B3; color: black;"><center>Marks Evaluators 2</center></th>
-                        <td>No graded</td>
-                    </tr>
-                    <tr>
-                        <th style="background-color: #86B5B3; color: black;"><center>Total Marks</center></th>
-                        <td colspan="3">No graded</td>
-                    </tr>
-                </table>
-            </div>
-            @endif
         </div>
     </div>
 </div>

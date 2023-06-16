@@ -74,7 +74,8 @@ class SupervisorApplicationController extends Controller
 
         return redirect()->back()->with('message', 'Supervisor Application Successfully');
     }
-
+    
+    //supervisor//
     public function applicationList()
     {
         $id = Auth::user()->id;
@@ -94,7 +95,7 @@ class SupervisorApplicationController extends Controller
                 ->where('statusApplied', 'In Progress')
                 ->exists();
 
-            return view('supervisorform.applicationlist', compact('applicationList', 'applicationexist'));     
+        return view('supervisorform.applicationlist', compact('applicationList', 'applicationexist'));     
     }
 
     public function viewApplication($id)

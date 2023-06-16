@@ -23,7 +23,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Meeting Title</label></td>
                             <td colspan="3">
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="meetingTitle" id="meetingTitle" value="">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" class="form-control" name="meetingTitle" id="meetingTitle" value="" required>
                             </td>
                         </tr>
                         <tr>
@@ -36,23 +36,23 @@
                             </td>
                             <td style="text-align: center; color: black"><label>Date</label></td>
                             <td>
-                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="date" id="date">
+                                <input type="date" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="date" id="date" required>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center; color: black"><label>Time Start</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="timeStart" id="timeStart">
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="timeStart" id="timeStart" required>
                             </td>
                             <td style="text-align: center; color: black"><label>Time End</label></td>
                             <td>
-                                <input type="time" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="timeEnd" id="timeEnd">
+                                <input type="time" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="timeEnd" id="timeEnd" required>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center; color: black"><label>Purpose</label></td>
                             <td colspan="3">
-                                <textarea class="form-control" name="purpose" id="purpose" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;"></textarea>
+                                <textarea class="form-control" name="purpose" id="purpose" rows="2" style="background-color: #86B5B3; border-radius: 10px; width: 100%;" required></textarea>
                             </td>
                         </tr>
                         <tr>

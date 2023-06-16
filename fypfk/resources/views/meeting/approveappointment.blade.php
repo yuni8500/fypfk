@@ -8,7 +8,7 @@
 </div>
 @endif
 
-<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>REJECTED APPOINTMENT</b></h3>
+<h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>APPROVE APPOINTMENT</b></h3>
 
 <div class="card" style="margin: auto">
 
@@ -24,7 +24,7 @@
                         <tr>
                             <td style="text-align: center; color: black"><label>Location</label></td>
                             <td>
-                                <input type="text" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="location" id="location">
+                                <input type="text" style="background-color: #86B5B3; border-radius: 10px;" class="form-control" name="location" id="location" required>
                             </td>
                         </tr>
                         <tr>

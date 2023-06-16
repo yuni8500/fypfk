@@ -32,46 +32,90 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->numPhone = $request->input('numPhone');
-        $user->matric = $request->input('matric');
-        $user->course_group = $request->input('course');
-        $user->profilePic = $request->file('image');
+        $oldPassword = $request->input('oldPsw');
 
-        // to rename the proposal file
-        $filename = time() . '.' . $user->profilePic->getClientOriginalExtension(); //get name declare
+        if (password_verify($oldPassword, $user->password)) {
+            // The old password is correct
 
-        // to store the file by moving to assets folder
-        $request->image->move('assets', $filename);//get request name
-        //untuk rename
-        $user->profilePic = $filename;//get name declare
+            $newPassword = $request->input('newPsw');
+            $confirmPassword = $request->input('confirmPsw');
 
-        $user->update();
+            if ($newPassword === $confirmPassword) {
+            // The new password matches the confirmed password
+                $user->password = bcrypt($newPassword);
 
-        return redirect()->back()->with('message', 'Profile Updated Successfully');
+            // Proceed with updating other attributes and saving the profile picture
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->numPhone = $request->input('numPhone');
+                $user->matric = $request->input('matric');
+                $user->course_group = $request->input('course');
+
+                if ($request->hasFile('image'))
+                {
+                    $user->profilePic = $request->file('image');
+
+                    // Renaming and storing the profile picture file
+                    $filename = time() . '.' . $user->profilePic->getClientOriginalExtension();
+                    $request->image->move('assets', $filename);
+                    $user->profilePic = $filename;
+                }
+
+                $user->update();
+        
+                return redirect()->back()->with('message', 'Profile Updated Successfully');
+            } else {
+            // The new password and confirm password do not match
+                return redirect()->back()->with('error', 'New password and confirm password do not match. Profile update failed.');
+            }
+        } else {
+            // The old password is incorrect
+            return redirect()->back()->with('error', 'Incorrect old password. Profile update failed.');
+        }
     }
 
     public function updateProfileAdmin(Request $request, $id) //request apa value input from user untk update, insert
     {
         $user = User::find($id);
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->numPhone = $request->input('numPhone');
-        $user->matric = $request->input('matric');
-        $user->profilePic = $request->file('image');
+        $oldPassword = $request->input('oldPsw');
 
-        // to rename the proposal file
-        $filename = time() . '.' . $user->profilePic->getClientOriginalExtension(); //get name declare
+        if (password_verify($oldPassword, $user->password)) {
+            // The old password is correct
 
-        // to store the file by moving to assets folder
-        $request->image->move('assets', $filename);//get request name
-        //untuk rename
-        $user->profilePic = $filename;//get name declare
+            $newPassword = $request->input('newPsw');
+            $confirmPassword = $request->input('confirmPsw');
 
-        $user->update();
+            if ($newPassword === $confirmPassword) {
+            // The new password matches the confirmed password
+                $user->password = bcrypt($newPassword);
 
-        return redirect()->back()->with('message', 'Profile Updated Successfully');
+            // Proceed with updating other attributes and saving the profile picture
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->numPhone = $request->input('numPhone');
+                $user->matric = $request->input('matric');
+
+                if ($request->hasFile('image'))
+                {
+                    $user->profilePic = $request->file('image');
+
+                    // Renaming and storing the profile picture file
+                    $filename = time() . '.' . $user->profilePic->getClientOriginalExtension();
+                    $request->image->move('assets', $filename);
+                    $user->profilePic = $filename;
+                }
+
+                $user->update();
+        
+                return redirect()->back()->with('message', 'Profile Updated Successfully');
+            } else {
+            // The new password and confirm password do not match
+                return redirect()->back()->with('error', 'New password and confirm password do not match. Profile update failed.');
+            }
+        } else {
+            // The old password is incorrect
+            return redirect()->back()->with('error', 'Incorrect old password. Profile update failed.');
+        }
     }
 }
