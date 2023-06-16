@@ -139,7 +139,9 @@ Route::get('/viewEvaluationRecord/{id}', [App\Http\Controllers\EvaluationControl
 Route::get('/reporting', [App\Http\Controllers\ReportController::class, 'loadReport'])->name('report');
 Route::get('/reportListSupervisee', [App\Http\Controllers\ReportController::class, 'reportListSupervisee'])->name('reportListSupervisee');//supervisor
 Route::get('/reportSuperviseeView/{id}', [App\Http\Controllers\ReportController::class, 'reportSuperviseeView'])->name('reportSuperviseeView');
-Route::get('/reportingAdmin', [App\Http\Controllers\ReportController::class, 'reportingAdmin'])->name('reportingAdmin');//admin
+Route::get('/reportingFYP', [App\Http\Controllers\ReportController::class, 'reportingFYP'])->name('reportingFYP');//admin
+Route::post('/fypReportAdmin', [App\Http\Controllers\ReportController::class, 'fypReportAdmin'])->name('fypReportAdmin');
+Route::get('/reportingAdmin', [App\Http\Controllers\ReportController::class, 'reportingAdmin'])->name('reportingAdmin');
 Route::post('/superviseeList', [App\Http\Controllers\ReportController::class, 'superviseeList'])->name('superviseeList');
 
 Route::get('/submission', [App\Http\Controllers\SubmissionController::class, 'loadSubmission'])->name('submission');

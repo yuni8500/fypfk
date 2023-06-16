@@ -4,6 +4,10 @@
 
 <h3 style="color: black; padding-left: 10px; padding-top: 10px"><b>PROJECT REPORT</b></h3>
 
+<a href="{{ route('reportingFYP') }}" style="color: black">
+    <i class="material-icons" style="color: black; font-size: 20px">keyboard_arrow_left</i> <b>BACK</b>
+</a>
+<br><br>
 <table>
     <form action="{{ route('superviseeList') }}" method="POST">
     @csrf

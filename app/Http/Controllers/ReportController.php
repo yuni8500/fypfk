@@ -285,6 +285,72 @@ class ReportController extends Controller
     }
 
     //admin//
+    public function reportingFYP()
+    {
+        $semester = DB::table('supervisorapply')
+                    ->select('semester')
+                    ->distinct()
+                    ->get();
+    
+        return view('reporting.findfypreport', compact('semester')); 
+    }
+
+    public function fypReportAdmin(Request $request)
+    {
+        $semester = DB::table('supervisorapply')
+                    ->select('semester')
+                    ->distinct()
+                    ->get();
+
+        $semesterFind = $request->input('semester');
+
+        $countPTA1 =  DB::table('supervisorapply')
+                    ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                    ->select([
+                        'users.id AS userID',
+                        'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                    ])
+                    ->where('supervisorapply.semester', $semesterFind)
+                    ->where('supervisorapply.statusApplied', 'Approved')
+                    ->where('users.course_group', 'PTA 1')
+                    ->count();
+
+        $countPTA2 =  DB::table('supervisorapply')
+                    ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                    ->select([
+                        'users.id AS userID',
+                        'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                    ])
+                    ->where('supervisorapply.semester', $semesterFind)
+                    ->where('supervisorapply.statusApplied', 'Approved')
+                    ->where('users.course_group', 'PTA 2')
+                    ->count();
+
+        $countPSM1 =  DB::table('supervisorapply')
+                    ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                    ->select([
+                        'users.id AS userID',
+                        'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                    ])
+                    ->where('supervisorapply.semester', $semesterFind)
+                    ->where('supervisorapply.statusApplied', 'Approved')
+                    ->where('users.course_group', 'PSM 1')
+                    ->count();
+
+        $countPSM2 =  DB::table('supervisorapply')
+                    ->join('users', 'users.id', '=', 'supervisorapply.superviseeID')
+                    ->select([
+                        'users.id AS userID',
+                        'supervisorapply.id AS applyID', 'users.*', 'supervisorapply.*'
+                    ])
+                    ->where('supervisorapply.semester', $semesterFind)
+                    ->where('supervisorapply.statusApplied', 'Approved')
+                    ->where('users.course_group', 'PSM 2')
+                    ->count();
+
+        return view('reporting.wholereportadmin', compact('semester', 'countPTA1', 'countPTA2', 'countPSM1', 'countPSM2'));     
+    }
+
     public function reportingAdmin()
     {
         $staff = DB::table('users')

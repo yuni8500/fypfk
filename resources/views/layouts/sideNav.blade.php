@@ -179,7 +179,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('reportingAdmin*') ? 'active' : '' }}" href="{{ route('reportingAdmin') }}" style="background-color: #86B5B3; color: black">
+                        <a class="nav-link {{ request()->routeIs('reportingFYP*') ? 'active' : '' }}" href="{{ route('reportingFYP') }}" style="background-color: #86B5B3; color: black">
                             <b><i class="material-icons" style="color: black">pie_chart</i>
                             <span>Reporting</span></b>
                         </a>
