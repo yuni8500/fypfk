@@ -32,7 +32,7 @@ class SendAppointmentReminder extends Command
     */
     public function handle(): void
 {
-    $tomorrow = Carbon::now()->addDay()->toDateString();
+    $tomorrow = Carbon::now('UTC')->addDay()->toDateString();
 
     $appointments = Appointment::where('appointDate', $tomorrow)
         ->where('statusAppoint', 'Approved')
