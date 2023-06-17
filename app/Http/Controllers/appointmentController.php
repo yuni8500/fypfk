@@ -297,4 +297,31 @@ class appointmentController extends Controller
 
         return redirect()->back()->with('message', 'Appointment Meeting Updated Successfully');
     }
+
+    //email notification
+    public function notificationEmail(Request $request)
+        {
+            $id = Auth::user()->id;
+
+    $user = DB::table('appointment')
+        ->join('users', 'users.id', '=', 'appointment.superviseeID')
+        ->select([
+            'users.name', 'users.email', 'appointment.startTime', 'appointment.endTime', 'appointment.appointLocation'
+        ])
+        ->where('appointment.statusAppoint', 'Approved')
+        ->where('users.id', $id)
+        ->first();
+
+    $data = [
+        'startTime' => $user->startTime,
+        'endTime' => $user->endTime,
+        'appointLocation' => $user->appointLocation,
+    ];
+
+    // You can perform any necessary operations with the $data here
+    // such as saving it to the database or displaying it on a view
+
+    return view('email.notificationMeeting')->with('data', $data);
+           
+        }
 }
