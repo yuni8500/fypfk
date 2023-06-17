@@ -21,7 +21,7 @@ protected function schedule(Schedule $schedule)
     // Your existing scheduled tasks may already be defined here
     
     // Add the appointment reminder command here
-    $schedule->command('appointment:reminder')->dailyAt('09:00');
+    $schedule->command('appointment:reminder')->dailyAt('16:15');
 }
     /**
      * The application's global HTTP middleware stack.

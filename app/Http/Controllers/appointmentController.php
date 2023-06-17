@@ -323,5 +323,22 @@ class appointmentController extends Controller
 
     return view('email.notificationMeeting')->with('data', $data);
            
+    $tomorrow = Carbon::now('UTC+8')->addDay()->toDateString();
+
+    $appointments = Appointment::where('appointDate', $tomorrow)
+        ->where('statusAppoint', 'Approved')
+        ->with(['user', 'supervisor']) // Include the 'supervisor' relationship
+        ->get();
+
+    foreach ($appointments as $appointment) {
+        $data = [
+            'startTime' => $appointment->startTime,
+            'endTime' => $appointment->endTime,
+            'appointLocation' => $appointment->appointLocation,
+        ];
+
+        Mail::to($appointment->user->email)->send(new notificationMail($data));
+        Mail::to($appointment->supervisor->email)->send(new notificationMail($data)); // Send email to supervisor
+        }
         }
 }
